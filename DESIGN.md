@@ -48,4 +48,9 @@ De volgende functies willen wij gaan implementeren in helpers.py:
 + def apology()
     - Geef de html pagina waar je eerder op was, maar met een balk bovenin die zegt dat het niet gelukt is
 + def get_questin(amount = 1, type = multiple, category, difficulty)
-    - Geeft een random vraag terug uit de volgende API: [Open Trivia Database] (https://opentdb.com)
+    - Geeft een random vraag terug uit de volgende API: [Open Trivia Database](https://opentdb.com)
+
+## 4. Plugins/frameworks
++ **Open Trivia Database**: Database vol met vragen met de mogelijkheid tot multiplechoice, onderverdeeld in zowel moeilijkheidsgraad als thema.
+        Door middel van de een helpers-functie kunnen we makkelijk een vraag aanroepen uit de API voor het triviaspel.
++ **Bootstrap**: Functies voor html-pagina’s. Biedt allerlei extra’s voor het opmaken van de website-pagina’s.
