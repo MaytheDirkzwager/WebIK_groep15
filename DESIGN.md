@@ -41,7 +41,7 @@ De volgende functies willen wij gaan implementeren in application.py:
         * sessionsettings.html
 
 ## 2. Views
-Afbeelding moet hier komen!
+**![](https://lh6.googleusercontent.com/RjUfnCriIrnfD28RRzgKcneKv7BnyZwl2mJDPhPDGcHZQ8y17v8JCHKG6ulj9Z-QxbILJSItqH5Tu1xMouoEfrKNG46LjFNEUyLtn0uRnKykehM2DLHpgNU0HPo7eM1G9ynFfhrK)**
 
 ## 3. Models/helpers
 De volgende functies willen wij gaan implementeren in helpers.py:
