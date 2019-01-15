@@ -42,6 +42,9 @@ De volgende functies willen wij gaan implementeren in application.py:
 
 ## 2. Views
 **![](https://lh6.googleusercontent.com/RjUfnCriIrnfD28RRzgKcneKv7BnyZwl2mJDPhPDGcHZQ8y17v8JCHKG6ulj9Z-QxbILJSItqH5Tu1xMouoEfrKNG46LjFNEUyLtn0uRnKykehM2DLHpgNU0HPo7eM1G9ynFfhrK)**
+Bovenstaande afbeelding geeft een impressie van de verschillende schermen die in onze webapplicatie te vinden zijn.
+De hele presentatie met de losse schermen is te vinden via deze [link](https://prezi.com/kegmqcrojm20/welcome-to-bamboozled/?utm_campaign=share&utm_medium=copy).
+
 
 ## 3. Models/helpers
 De volgende functies willen wij gaan implementeren in helpers.py:
