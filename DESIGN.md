@@ -48,4 +48,4 @@ De volgende functies willen wij gaan implementeren in helpers.py:
 + def apology()
     - Geef de html pagina waar je eerder op was, maar met een balk bovenin die zegt dat het niet gelukt is
 + def get_questin(amount = 1, type = multiple, category, difficulty)
-    - Geeft een random vraag terug uit de volgende API: [Open Trivia Database] (https://opentdb.com)
+    - Geeft een random vraag terug uit de volgende API: [Open Trivia Database](https://opentdb.com)
