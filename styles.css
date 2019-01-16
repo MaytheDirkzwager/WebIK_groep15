@@ -1,7 +1,7 @@
 body
 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background-color: #DC143C;
+    background-color: #FFFFFF;
 }
 
 main
@@ -22,10 +22,52 @@ main
 
 }
 
+.buttonMiddle
+{
+    position: absolute;
+    text-align: center;
+    top: 80%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonRight
+{
+    position: absolute;
+    text-align: center;
+    top: 80%;
+    right: 0;
+    bottom: 0;
+    left: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonLeft
+{
+    position: absolute;
+    text-align: center;
+    top: 80%;
+    right: 30%;
+    bottom: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .button
 {
-    display:inline-block;
+    background-color: #6600cc; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
     text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
 .title
@@ -49,7 +91,8 @@ main
     text-align: center;
 }
 
-.centered {
+.centered
+{
   position: fixed;
   top: 50%;
   left: 50%;
