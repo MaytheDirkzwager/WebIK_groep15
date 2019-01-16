@@ -11,16 +11,19 @@ main
     width: auto;
 }
 
-main .form-control
+.form-group
 {
     /* center form controls */
     display: inline-block;
 
     /* override Bootstrap's 100% width for form controls */
     width: auto;
+
+    vertical-align:middle;
+
 }
 
-button-home
+.button
 {
     display:inline-block;
 }
@@ -31,4 +34,12 @@ button-home
     margin-right: auto;
     text-align: center;
     color: #6600cc;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
 }
