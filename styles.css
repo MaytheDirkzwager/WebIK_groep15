@@ -1,7 +1,8 @@
 body
 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background-color: #FFFFFF;
+    background-color: #5CDB95;
+    color: #05386B;
 }
 
 main
@@ -58,9 +59,9 @@ main
 
 .button
 {
-    background-color: #6600cc; /* Green */
+    background-color: #05386B;
     border: none;
-    color: white;
+    color: #EDF5E1;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -73,7 +74,7 @@ main
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    color: #6600cc;
+    color: #05386B;
 }
 
 .text
