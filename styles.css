@@ -19,13 +19,13 @@ main
     /* override Bootstrap's 100% width for form controls */
     width: auto;
 
-    vertical-align:middle;
 
 }
 
 .button
 {
     display:inline-block;
+    text-align: center;
 }
 
 .title
@@ -47,6 +47,7 @@ main
     width: 20%;
     height: 30%;
     text-align: center;
+}
 
 .centered {
   position: fixed;
@@ -55,3 +56,6 @@ main
   margin-top: -50px;
   margin-left: -100px;
 }
+
+
+
