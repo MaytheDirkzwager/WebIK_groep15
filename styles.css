@@ -6,6 +6,7 @@ body
 main
 {
     font-size: medium;
+
     /* center form controls */
     display: inline-block;
 
@@ -16,4 +17,11 @@ main
 button-home
 {
     display:inline-block;
+}
+
+.title
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
