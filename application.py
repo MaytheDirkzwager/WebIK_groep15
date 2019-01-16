@@ -40,12 +40,7 @@ def index():
 
     if request.method == "POST":
 
-
-        # knop spel maken
-
-        # knop spel joinen + geheime code invullen
-
-        # if invalid --> index_invalid_id.html
+        return render_template("lobbyHost.html")
 
 
 
