@@ -22,7 +22,7 @@ Het doel van de webapplicatie is om twee of meer spelers gelijktijdig vragen te 
 6. Gebruikers kunnen zien wie de meeste spellen heeft gewonnen
 Dikgedrukte punten behoren tot de *minimum viable product*.
 ## 4. Afhankelijkheden
- - **Benodigdheden**: Voor de triviavragen gebruiken we een triviadatabase: [http://jservice.io](http://jservice.io/).  <br> De API die nuttig lijkt voor onze website is [Qriusity](https://www.programmableweb.com/api/qriusity), een API dat gespecialiseerd voor triviawebsites/-apps.<br> 
- -**Externe componenten**: Voor de opmaak van de website zullen we gebruik moeten maken van Bootstrap en SVG (gemaakt om figuren te maken, handig voor optiebalken, wellicht).
+ - **Benodigdheden**: Voor de triviavragen gebruiken we een triviadatabase: [http://jservice.io](http://jservice.io/).  <br> De API die nuttig lijkt voor onze website is [Qriusity](https://www.programmableweb.com/api/qriusity), een API dat gespecialiseerd voor triviawebsites/-apps.<br>
+ - **Externe componenten**: Voor de opmaak van de website zullen we gebruik moeten maken van Bootstrap en SVG (gemaakt om figuren te maken, handig voor optiebalken, wellicht).
  - **Concurrerende bestaande websites**: Ons spel zal elementen bevatten die geïnspireerd zijn door apps als Kahoot, Trivia Crack Piccolo, maar met andere doeleinden.
  - **Moeilijkste delen**: Een uitdaging die we waarschijnlijk tegemoet zullen komen is hoe we precies de unieke kaarten met speciale bonussen zullen moeten coderen. Die moeten we namelijk zelf bedenken, uitwerken en implementeren.
