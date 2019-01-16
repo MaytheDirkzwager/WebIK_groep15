@@ -31,7 +31,7 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
-@app.route("/index", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
     """Register user."""
 
@@ -42,7 +42,5 @@ def index():
 
         return render_template("lobbyHost.html")
 
-
-
     else:
-        return render_template("index.html")
+        return redirect(url_for("index"))
