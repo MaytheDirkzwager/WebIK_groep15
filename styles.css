@@ -1,6 +1,7 @@
 body
 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    background-color: #DC143C;
 }
 
 main
@@ -29,4 +30,5 @@ button-home
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    color: #6600cc;
 }
