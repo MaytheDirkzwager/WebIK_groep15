@@ -47,6 +47,7 @@ main
     width: 20%;
     height: 30%;
     text-align: center;
+}
 
 .centered {
   position: fixed;
