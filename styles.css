@@ -36,8 +36,19 @@ main
     color: #6600cc;
 }
 
-.centered
+.text
 {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    height: 30%;
+    text-align: center;
+
+.centered {
   position: fixed;
   top: 50%;
   left: 50%;
