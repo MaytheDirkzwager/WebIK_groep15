@@ -40,9 +40,6 @@ def index():
 
     if request.method == "POST":
 
-        # nickname invullen
-        if not request.name.get("nickname"):
-            return apology("Must submit a nickname")
 
         # knop spel maken
 
