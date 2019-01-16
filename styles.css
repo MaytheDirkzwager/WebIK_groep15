@@ -6,16 +6,24 @@ body
 
 main
 {
-    font-size: medium;
-
-    /* center form controls */
-    display: inline-block;
 
     /* override Bootstrap's 100% width for form controls */
     width: auto;
 }
 
-button-home
+.form-group
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+
+    vertical-align:middle;
+
+}
+
+.button
 {
     display:inline-block;
 }
@@ -28,6 +36,7 @@ button-home
     color: #6600cc;
 }
 
+
 .text
 {
     position: absolute;
@@ -39,4 +48,11 @@ button-home
     width: 20%;
     height: 30%;
     text-align: center;
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
 }
