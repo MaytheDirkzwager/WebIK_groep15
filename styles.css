@@ -6,4 +6,14 @@ body
 main
 {
     font-size: medium;
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+button-home
+{
+    display:inline-block;
 }
