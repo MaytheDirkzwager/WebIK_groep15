@@ -59,6 +59,7 @@ def lobbyHost():
         if request.form['button'] == 'start':
             return render_template("lobbyPlayer.html")
 
+
     else:
         return render_template("lobbyHost.html")
 
