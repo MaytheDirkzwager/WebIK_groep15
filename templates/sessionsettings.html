@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+    <head>
+        <title>Settings</title>
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+    </head>
+    <body>
+        <div class="title">
+            <h1>Settings</h1>
+        </div>
+
+        <div class="text">
+            <h5>Volume: </h5>
+        </div>
+
+        <form action = "{{ url_for('sessionsettings') }}" method = "post">
+
+         <div>
+            <button class="backIcon" type="submit" name="button" value="back" ></button>
+        </div>
+
+        <div class="buttonMiddle">
+            <button type="submit" name="button" value="leave" class="button">Leave Game</button>
+        </div>
+
+        </form>
+    </body>

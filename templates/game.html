@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+    <head>
+        <title>Game</title>
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+    </head>
+    <body>
+        <div class="title">
+            <h1>Dit is een vraag. Wat is jouw antwoord?</h1>
+        </div>
+
+        <div class="text">
+            <h5>A: Antwoord A</h5>
+            <h5>B: Antwoord B</h5>
+            <h5>C: Antwoord C</h5>
+            <h5>D: Antwoord D</h5>
+        </div>
+
+        <form action = "{{ url_for('game') }}" method = "post">
+
+        <div class="buttonMiddle">
+            <button type="submit" name="button" value="confirm" class="button">Confirm</button>
+        </div>
+
+         <div>
+            <button class="settingsIcon" type="submit" name="button" value="settings"></button>
+        </div>
+
+        </form>
+    </body>

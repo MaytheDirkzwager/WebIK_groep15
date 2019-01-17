@@ -43,7 +43,7 @@ Session(app)
 # configure CS50 Library to use SQLite database
 # db = SQL("sqlite:///finance.db")
 
-@app.route("/index", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
     """Register user."""
 
@@ -69,7 +69,10 @@ def lobbyHost():
             return render_template("index.html")
 
         if request.form['button'] == 'start':
-            return render_template("lobbyPlayer.html")
+            return render_template("game.html")
+
+        if request.form['button'] == 'settings':
+            return render_template("gamesettings.html")
 
     else:
         return render_template("lobbyHost.html")
@@ -84,3 +87,52 @@ def lobbyPlayer():
     else:
         return render_template("lobbyPlayer.html")
 
+@app.route("/gamesettings", methods=["GET", "POST"])
+def gamesettings():
+
+    if request.method == "POST":
+        if request.form['button'] == 'back':
+            return render_template("lobbyHost.html")
+
+    else:
+        return render_template("gamesettings.html")
+
+@app.route("/game", methods=["GET", "POST"])
+def game():
+
+    if request.method == "POST":
+        if request.form['button'] == 'confirm':
+
+            return render_template("card.html")
+
+        if request.form['button'] == 'settings':
+            return render_template("sessionsettings.html")
+
+    else:
+        return render_template("game.html")
+
+@app.route("/sessionsettings", methods=["GET", "POST"])
+def sessionsettings():
+
+    if request.method == "POST":
+        if request.form['button'] == 'back':
+            return render_template("game.html")
+
+        if request.form['button'] == 'leave':
+            return render_template("index.html")
+
+    else:
+        return render_template("sessionsettings.html")
+
+@app.route("/card", methods=["GET", "POST"])
+def card():
+
+    if request.method == "POST":
+        if request.form['button'] == 'activate':
+            return render_template("game.html")
+
+        if request.form['button'] == 'settings':
+            return render_template("sessionsettings.html")
+
+    else:
+        return render_template("card.html")

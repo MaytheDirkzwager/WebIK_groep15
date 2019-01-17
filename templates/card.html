@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+    <head>
+        <title>Card</title>
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+    </head>
+    <body>
+        <div class="title">
+            <h1>This is a card!</h1>
+        </div>
+
+        <div class="card">
+        </div>
+
+        <form action = "{{ url_for('card') }}" method = "post">
+
+        <div class="buttonMiddle">
+            <button type="submit" name="button" value="activate" class="button">Activate</button>
+        </div>
+
+         <div>
+            <button class="settingsIcon" type="submit" name="button" value="settings"></button>
+        </div>
+
+        </form>
+    </body>

@@ -13,10 +13,6 @@
             <h1>Waiting for players...</h1>
         </div>
 
-        <div class="settings">
-            <img src="settings-cog-gear-interface-512.png">
-        </div>
-
         <div class="text">
             <h5>Player 1</h5>
             <h5>Player 2</h5>
@@ -26,16 +22,18 @@
 
         <form action = "{{ url_for('lobbyHost') }}" method = "post">
 
-        <div class="buttonRight">
-
-            <button class="button" type="submit"  name="button" value="leave">Leave Game</button>
-
+         <div class="buttonRight">
+            <button type="submit" name="button" value="leave" class="button">Leave Game</button>
         </div>
+
         <div class="buttonLeft">
-
             <button class="button" type="submit"  name="button" value="start">Start Game</button>
-
         </div>
+
+        <div>
+            <button class="settingsIcon" type="submit" name="button" value="settings"></button>
+        </div>
+
 
         </form>
     </body>
