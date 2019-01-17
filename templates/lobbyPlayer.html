@@ -20,11 +20,9 @@
             <h5>Player 4</h5>
         </div>
 
-
+        <form action = "{{ url_for('lobbyPlayer') }}" method = "post">
 
         <div class="buttonMiddle">
-            <form action="{{ url_for('index') }}" method="post">
-
             <button type="submit" name="button" value="leave" class="button">Leave Game</button>
         </div>
 

@@ -24,16 +24,17 @@
             <h5>Player 4</h5>
         </div>
 
-        <form action = "{{ url_for('lobbyPlayer') }}" method = "post">
+        <form action = "{{ url_for('lobbyHost') }}" method = "post">
 
         <div class="buttonRight">
 
             <button class="button" type="submit"  name="button" value="leave">Leave Game</button>
 
-
         </div>
         <div class="buttonLeft">
+
             <button class="button" type="submit"  name="button" value="start">Start Game</button>
+
         </div>
 
         </form>
