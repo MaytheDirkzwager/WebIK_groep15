@@ -6,10 +6,15 @@
     <head>
         <title>Lobby Host</title>
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
     </head>
     <body>
         <div class="title">
             <h1>Waiting for players...</h1>
+        </div>
+
+        <div class="settings">
+            <img src="settings-cog-gear-interface-512.png">
         </div>
 
         <div class="text">
@@ -23,12 +28,12 @@
 
         <div class="buttonRight">
 
-            <button class="button" type="submit">Verlaat Spel</button>
+            <button class="button" type="submit"  name="button" value="leave">Leave Game</button>
 
 
         </div>
         <div class="buttonLeft">
-            <button class="button" type="submit" onclick=GoToPage()>Begin Spel</button>
+            <button class="button" type="submit"  name="button" value="start">Start Game</button>
         </div>
 
         </form>
