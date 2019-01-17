@@ -53,19 +53,20 @@ def index():
 def lobbyHost():
 
     if request.method == "POST":
-        return render_template("lobbyHost.html")
+        if request.form['button'] == 'leave':
+            return render_template("index.html")
+
+        if request.form['button'] == 'start':
+            return render_template("lobbyPlayer.html")
+
     else:
         return render_template("lobbyHost.html")
 
-
-    else:
-        return redirect(url_for("index"))
 
 @app.route("/lobbyPlayer", methods=["GET", "POST"])
 def lobbyPlayer():
 
     if request.method == "POST":
-
         return render_template("index.html")
 
     else:
