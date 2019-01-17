@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+    <head>
+        <title>Lobby Win</title>
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+    </head>
+    <body>
+        <div class="title">
+            <h1>Julian heeft gewonnen!</h1>
+        </div>
+
+        <div class="text">
+            <h5>Met 10 punten!!!</h5>
+            <h5>Wat een ongelooflijke baas...!</h5>
+        </div>
+
+        <form action = "{{ url_for('lobbyWin') }}" method = "post">
+
+         <div class="buttonRight">
+            <button type="submit" name="button" value="leave" class="button">Leave Game</button>
+        </div>
+
+        <div class="buttonLeft">
+            <button class="button" type="submit"  name="button" value="restart">Play Again</button>
+        </div>
+
+
+        </form>
+    </body>

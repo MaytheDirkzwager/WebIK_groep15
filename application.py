@@ -129,10 +129,37 @@ def card():
 
     if request.method == "POST":
         if request.form['button'] == 'activate':
-            return render_template("game.html")
+            return render_template("cardExplanation.html")
 
         if request.form['button'] == 'settings':
             return render_template("sessionsettings.html")
 
     else:
         return render_template("card.html")
+
+@app.route("/cardExplanation", methods=["GET", "POST"])
+def cardExplanation():
+
+    if request.method == "POST":
+        if request.form['button'] == 'continue':
+            return render_template("game.html")
+
+        if request.form['button'] == 'settings':
+            return render_template("lobbyWin.html")
+
+    else:
+        return render_template("cardExplanation.html")
+
+@app.route("/lobbyWin", methods=["GET", "POST"])
+def lobbyWin():
+
+    if request.method == "POST":
+        if request.form['button'] == 'leave':
+            return render_template("index.html")
+
+        if request.form['button'] == 'restart':
+            return render_template("lobbyPlayer.html")
+
+    else:
+        return render_template("lobbyWin.html")
+
