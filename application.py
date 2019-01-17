@@ -58,8 +58,6 @@ def lobbyHost():
         return render_template("lobbyHost.html")
 
 
-    else:
-        return redirect(url_for("index"))
 
 @app.route("/lobbyPlayer", methods=["GET", "POST"])
 def lobbyPlayer():
