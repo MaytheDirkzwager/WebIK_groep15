@@ -4,6 +4,18 @@ from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import pprint as pp
+import aiohttp
+import requests
+from pytrivia import Category, Diffculty, Type, Trivia
+
+"""
+Mocht je een vraag willen genereren, doe het als volgt:
+    my_api = Trivia(True)
+    response = my_api.request(1, Category.Books, Diffculty.Hard, Type.Multiple_Choice)
+Vul je geen categorie of difficulty in, dan wordt er random eentje gekozen!
+Raadpleeg bron voor juiste spelling en/of andere informatie:
+https://github.com/MaT1g3R/Python-Trivia-API
+"""
 
 # from helpers import *
 
