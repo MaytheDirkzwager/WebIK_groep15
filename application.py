@@ -8,6 +8,8 @@ import aiohttp
 import requests
 from pytrivia import Category, Diffculty, Type, Trivia
 
+from helpers import *
+
 """
 Mocht je een vraag willen genereren, doe het als volgt:
     my_api = Trivia(True)
@@ -69,7 +71,9 @@ def lobbyHost():
             return render_template("index.html")
 
         if request.form['button'] == 'start':
-            return render_template("game.html")
+
+            question, rightAnswer, wrongAnswers = getQuestion()
+            return render_template("game.html", question = question, answerA = rightAnswer)
 
         if request.form['button'] == 'settings':
             return render_template("gamesettings.html")
@@ -100,6 +104,9 @@ def gamesettings():
 @app.route("/game", methods=["GET", "POST"])
 def game():
 
+    if request.method == "GET":
+        return render_template("game.html")
+
     if request.method == "POST":
         if request.form['button'] == 'confirm':
 
@@ -109,6 +116,7 @@ def game():
             return render_template("sessionsettings.html")
 
     else:
+
         return render_template("game.html")
 
 @app.route("/sessionsettings", methods=["GET", "POST"])
@@ -116,7 +124,8 @@ def sessionsettings():
 
     if request.method == "POST":
         if request.form['button'] == 'back':
-            return render_template("game.html")
+            question, rightAnswer, wrongAnswers = getQuestion()
+            return render_template("game.html", question = question, answerA = rightAnswer)
 
         if request.form['button'] == 'leave':
             return render_template("index.html")
@@ -142,7 +151,8 @@ def cardExplanation():
 
     if request.method == "POST":
         if request.form['button'] == 'continue':
-            return render_template("game.html")
+            question, rightAnswer, wrongAnswers = getQuestion()
+            return render_template("game.html", question = question, answerA = rightAnswer)
 
         if request.form['button'] == 'settings':
             return render_template("lobbyWin.html")
