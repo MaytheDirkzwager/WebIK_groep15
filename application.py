@@ -64,17 +64,17 @@ def index():
 
         if request.form['button'] == 'join' and request.form.get("password"):
 
+            result = db.execute("SELECT * FROM hosts WHERE password=:password",
+                                password=request.form.get("password"))
+
+            if not result:
+                return render_template("index.html", number=["one"], nickname=request.form.get("nickname"), error=True)
+
             db.execute("INSERT INTO users (nickname, password) VALUES (:nickname, :password)",
                         nickname=nickname, password=request.form.get("password"))
 
             db.execute("UPDATE hosts SET players = players + :number WHERE password=:password",
                         number = 1, password=request.form.get("password"))
-
-            result = db.execute("SELECT * FROM hosts WHERE password=:password",
-                                password=request.form.get("password"))
-            if not result:
-                return render_template("index.html", value=0)
-
 
             return render_template("lobbyPlayer.html")
 
@@ -92,7 +92,7 @@ def lobbyHost():
 
     if request.method == "POST":
         if request.form['button'] == 'leave':
-            return render_template("index.html")
+            return render_template("index.html", value = 0)
 
         if request.form['button'] == 'start':
             return render_template("game.html")
