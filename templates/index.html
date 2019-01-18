@@ -34,7 +34,7 @@
                 <h2 class="text-center">Start game</h2>
                 {% if value == 0 %}
                 <div class="form-group">
-                    <input type="text" autofocus class="form-control" placeholder="Nickname" name="nickname" required="required">
+                    <input autocomplete="off" type="text" autofocus class="form-control" placeholder="Nickname" name="nickname" required="required">
                 </div>
                 {% endif %}
                 {% for item in number %}
@@ -42,7 +42,7 @@
                         <input class="form-control" type="text" placeholder="{{ nickname }}" disabled>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="password" placeholder="Password" required="required">
+                        <input autocomplete="off" type="text" autofocus class="form-control" name="password" placeholder="Password" required="required">
                     </div>
                 {% endfor %}
                 <div class="form-group">

@@ -4,6 +4,7 @@ from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import pprint as pp
+from helpers import *
 # import aiohttp
 # import requests
 # from pytrivia import Category, Diffculty, Type, Trivia
@@ -17,7 +18,7 @@ Raadpleeg bron voor juiste spelling en/of andere informatie:
 https://github.com/MaT1g3R/Python-Trivia-API
 """
 
-# from helpers import *
+from helpers import *
 
 # configure application
 app = Flask(__name__)
@@ -41,7 +42,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-# db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///players.db")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -56,6 +57,9 @@ def index():
         nickname = request.form.get("nickname")
 
         if request.form['button'] == 'make':
+            password = gen_password()
+            db.execute("INSERT INTO hosts (nickname, password) VALUES (:nickname, :password)",
+                        nickname=nickname, password=password)
             return render_template("lobbyHost.html")
 
         if request.form['button'] == 'join' and request.form.get("password"):
@@ -63,10 +67,8 @@ def index():
 
         if request.form['button'] == 'join':
             number.append('one')
-            value = False
+            value = 1
             return render_template("index.html", number=number, nickname=nickname)
-
-
 
 
     else:
@@ -130,7 +132,7 @@ def sessionsettings():
             return render_template("game.html")
 
         if request.form['button'] == 'leave':
-            return render_template("index.html")
+            return render_template("index.html", value=0)
 
     else:
         return render_template("sessionsettings.html")
@@ -166,7 +168,7 @@ def lobbyWin():
 
     if request.method == "POST":
         if request.form['button'] == 'leave':
-            return render_template("index.html")
+            return render_template("index.html", value=0)
 
         if request.form['button'] == 'restart':
             return render_template("lobbyPlayer.html")
