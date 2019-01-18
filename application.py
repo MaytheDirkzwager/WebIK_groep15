@@ -52,14 +52,25 @@ def index():
 
     if request.method == "POST":
 
+        number = []
+        nickname = request.form.get("nickname")
+
         if request.form['button'] == 'make':
             return render_template("lobbyHost.html")
 
-        if request.form['button'] == 'join':
+        if request.form['button'] == 'join' and request.form.get("password"):
             return render_template("lobbyPlayer.html")
 
+        if request.form['button'] == 'join':
+            number.append('one')
+            value = False
+            return render_template("index.html", number=number, nickname=nickname)
+
+
+
+
     else:
-        return render_template("index.html")
+        return render_template("index.html", value = 0)
 
 @app.route("/lobbyHost", methods=["GET", "POST"])
 def lobbyHost():
@@ -82,7 +93,7 @@ def lobbyHost():
 def lobbyPlayer():
 
     if request.method == "POST":
-        return render_template("index.html")
+        return render_template("index.html", value = 0)
 
     else:
         return render_template("lobbyPlayer.html")
