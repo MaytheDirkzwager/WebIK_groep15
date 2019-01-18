@@ -32,19 +32,29 @@
                 <form action="{{ url_for('index') }}" method="post">
 
                 <h2 class="text-center">Start game</h2>
+                {% if value == 0 %}
                 <div class="form-group">
-                    <input type="text" autofocus class="form-control" placeholder="Nickname" required="required">
+                    <input autocomplete="off" type="text" autofocus class="form-control" placeholder="Nickname" name="nickname" required="required">
                 </div>
                 <div class="form-group">
-
                     <button type="submit" name="button" value="make" class="btn btn-primary btn-block">Make game</button>
-
                 </div>
                 <div class="form-group">
-
                     <button type="submit" name="button" value="join" class="btn btn-primary btn-block">Join game</button>
-
                 </div>
+                {% endif %}
+                {% for item in number %}
+                    <div class="form-group">
+                        <input class="form-control" readonly type="text" value="{{ nickname }}", name="nickname">
+                    </div>
+                    <div class="form-group">
+                        <input autocomplete="off" type="text" autofocus class="form-control" name="password" placeholder="Password" required="required">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="button" value="join" class="btn btn-primary btn-block">Join game</button>
+                    </div>
+                {% endfor %}
+
             </form>
         </div>
 
