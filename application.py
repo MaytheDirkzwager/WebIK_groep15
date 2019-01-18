@@ -4,9 +4,9 @@ from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import pprint as pp
-import aiohttp
-import requests
-from pytrivia import Category, Diffculty, Type, Trivia
+# import aiohttp
+# import requests
+# from pytrivia import Category, Diffculty, Type, Trivia
 
 """
 Mocht je een vraag willen genereren, doe het als volgt:
