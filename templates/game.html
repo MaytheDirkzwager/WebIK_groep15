@@ -10,14 +10,14 @@
     </head>
     <body>
         <div class="title">
-            <h1>Dit is een vraag. Wat is jouw antwoord?</h1>
+            <h1>{{ question }}</h1>
         </div>
 
         <div class="text">
-            <h5>A: Antwoord A</h5>
-            <h5>B: Antwoord B</h5>
-            <h5>C: Antwoord C</h5>
-            <h5>D: Antwoord D</h5>
+            <h5>{{ answerA }}</h5>
+            <h5>{{ answerB }}</h5>
+            <h5>{{ answerC }}</h5>
+            <h5>{{ answerD }}</h5>
         </div>
 
         <form action = "{{ url_for('game') }}" method = "post">
