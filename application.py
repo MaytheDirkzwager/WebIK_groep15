@@ -5,6 +5,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import pprint as pp
 from helpers import *
+from random import shuffle
 # import aiohttp
 # import requests
 # from pytrivia import Category, Diffculty, Type, Trivia
@@ -66,17 +67,17 @@ def index():
 
         if request.form['button'] == 'join' and request.form.get("password"):
 
+            result = db.execute("SELECT * FROM hosts WHERE password=:password",
+                                password=request.form.get("password"))
+
+            if not result:
+                return render_template("index.html", number=["one"], nickname=request.form.get("nickname"), error=True)
+
             db.execute("INSERT INTO users (nickname, password) VALUES (:nickname, :password)",
                         nickname=nickname, password=request.form.get("password"))
 
             db.execute("UPDATE hosts SET players = players + :number WHERE password=:password",
                         number = 1, password=request.form.get("password"))
-
-            result = db.execute("SELECT * FROM hosts WHERE password=:password",
-                                password=request.form.get("password"))
-            if not result:
-                return render_template("index.html", value=0)
-
 
             return render_template("lobbyPlayer.html")
 
@@ -94,12 +95,14 @@ def lobbyHost():
 
     if request.method == "POST":
         if request.form['button'] == 'leave':
-            return render_template("index.html")
+            return render_template("index.html", value = 0)
 
         if request.form['button'] == 'start':
-
             question, rightAnswer, wrongAnswers = getQuestion()
-            return render_template("game.html", question = question, answerA = rightAnswer)
+            answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+            shuffle(answer_options)
+            print(answer_options)
+            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
 
         if request.form['button'] == 'settings':
             return render_template("gamesettings.html")
@@ -151,7 +154,9 @@ def sessionsettings():
     if request.method == "POST":
         if request.form['button'] == 'back':
             question, rightAnswer, wrongAnswers = getQuestion()
-            return render_template("game.html", question = question, answerA = rightAnswer)
+            answer_list = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+            answer_options = shuffle(answer_list)
+            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
 
         if request.form['button'] == 'leave':
             return render_template("index.html", value=0)
@@ -178,7 +183,9 @@ def cardExplanation():
     if request.method == "POST":
         if request.form['button'] == 'continue':
             question, rightAnswer, wrongAnswers = getQuestion()
-            return render_template("game.html", question = question, answerA = rightAnswer)
+            answer_list = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+            answer_options = shuffle(answer_list)
+            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
 
         if request.form['button'] == 'settings':
             return render_template("lobbyWin.html")

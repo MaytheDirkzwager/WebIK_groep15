@@ -53,6 +53,11 @@
                     <div class="form-group">
                         <button type="submit" name="button" value="join" class="btn btn-primary btn-block">Join game</button>
                     </div>
+                    {% if error %}
+                        <p style="color: red;">
+                        Password does not exist
+                        </p>
+    {% endif %}
                 {% endfor %}
 
             </form>
