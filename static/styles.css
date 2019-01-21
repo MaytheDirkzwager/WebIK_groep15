@@ -91,18 +91,49 @@ main
 
 .card
 {
-    background: url(aas.jpg);
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    right: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height: 64%;
+    border-radius: 15px 50px;
+    background-color: #EDF5E1;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
 
+.card-body
+{
+    position: relative;
+    top: 10%;
+    height: 90%;
+    text-align: center;
+}
+
+.card-text
+{
+    position: relative;
+    top: 45%;
+}
+
+.buttonCard
+{
+    position: relative;
+    top: 10%;
 }
 
 .button
 {
-    background-color: #05386B;
-    border: none;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    border-radius: 15px 50px;
     color: #EDF5E1;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
+    /*text-decoration: none;*/
     display: inline-block;
     font-size: 16px;
 }
@@ -147,7 +178,7 @@ main
 .login-form form
 {
 	margin-bottom: 15px;
-    background: #f7f7f7;
+    background: #EDF5E1;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
 }
