@@ -34,10 +34,10 @@
                 <h2 class="text-center">Start game</h2>
                 {% if value == 0 %}
                 <div class="form-group">
-                    <input id="numb" autocomplete="off" type="text" autofocus class="form-control" placeholder="Nickname" name="nickname" required="required">
+                    <input autocomplete="off" type="text" autofocus class="form-control" placeholder="Nickname" name="nickname" required="required">
                 </div>
                 <div class="form-group">
-                    <button type="submit" onclick="myFunction()" name="button" value="make" class="btn btn-primary btn-block">Make game</button>
+                    <button type="submit"  name="button" value="make" class="btn btn-primary btn-block">Make game</button>
                 </div>
                 <div class="form-group">
                     <button type="submit" name="button" value="join" class="btn btn-primary btn-block">Join game</button>
@@ -62,27 +62,7 @@
 
             </form>
         </div>
-        <div>
-            <input id="numb">
-            <button type="button" onclick="myFunction()">Submit</button>
-            <p id="demo"></p>
-        </div>
-        <script>
-        function myFunction() {
-          var x, text;
 
-          // Get the value of the input field with id="numb"
-          x = document.getElementById("numb").value;
-
-          // If x is Not a Number or less than one or greater than 10
-          if (x) {
-            text = "Input OK";
-          } else {
-            text = "Input is invalid";
-          }
-          document.getElementById("demo").innerHTML = text;
-        }
-        </script>
 
     </body>
 
