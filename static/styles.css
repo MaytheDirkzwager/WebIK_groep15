@@ -72,6 +72,8 @@ main
     background: url(settings.png);
     background-size: 100%;
     background-color: #5CDB95;
+    outline: none;
+    border: none;
 }
 
 .backIcon
@@ -87,6 +89,9 @@ main
     margin-right: auto;
     background: url(backicon.png);
     background-size: 100%;
+    background-repeat: no-repeat;
+    outline: none;
+    border: none;
 }
 
 .card
@@ -133,8 +138,8 @@ main
     color: #EDF5E1;
     padding: 15px 32px;
     text-align: center;
-    /*text-decoration: none;*/
     display: inline-block;
+    outline: none;
     font-size: 16px;
 }
 

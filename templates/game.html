@@ -13,14 +13,24 @@
             <h1>{{ question }}</h1>
         </div>
 
+        <form action = "{{ url_for('game') }}" method = "post">
+
         <div class="text">
-            <h5>{{ answerA }}</h5>
-            <h5>{{ answerB }}</h5>
-            <h5>{{ answerC }}</h5>
-            <h5>{{ answerD }}</h5>
+            <div class="answer">
+            <input type="submit" value="{{ answerA }}" class="button"></input>
+            </div>
+            <div class="answer">
+            <input type="submit" value="{{ answerB }}" class="button"></input>
+            </div>
+            <div class="answer">
+            <input type="submit" value="{{ answerC }}" class="button"></input>
+            </div>
+            <div class="answer">
+            <input type="submit" value="{{ answerD }}" class="button"></input>
+            </div>
         </div>
 
-        <form action = "{{ url_for('game') }}" method = "post">
+
 
         <div class="buttonMiddle">
             <button type="submit" name="button" value="confirm" class="button">Confirm</button>

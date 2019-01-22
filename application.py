@@ -101,7 +101,6 @@ def lobbyHost():
             question, rightAnswer, wrongAnswers = getQuestion()
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
-            print(answer_options)
             return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
 
         if request.form['button'] == 'settings':
@@ -154,8 +153,8 @@ def sessionsettings():
     if request.method == "POST":
         if request.form['button'] == 'back':
             question, rightAnswer, wrongAnswers = getQuestion()
-            answer_list = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
-            answer_options = shuffle(answer_list)
+            answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+            shuffle(answer_options)
             return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
 
         if request.form['button'] == 'leave':
@@ -169,7 +168,11 @@ def card():
 
     if request.method == "POST":
         if request.form['button'] == 'activate':
-            return render_template("cardExplanation.html")
+            question, rightAnswer, wrongAnswers = getQuestion()
+            answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+            shuffle(answer_options)
+            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
+
 
         if request.form['button'] == 'settings':
             return render_template("sessionsettings.html")
@@ -177,21 +180,21 @@ def card():
     else:
         return render_template("card.html")
 
-@app.route("/cardExplanation", methods=["GET", "POST"])
-def cardExplanation():
+# @app.route("/cardExplanation", methods=["GET", "POST"])
+# def cardExplanation():
 
-    if request.method == "POST":
-        if request.form['button'] == 'continue':
-            question, rightAnswer, wrongAnswers = getQuestion()
-            answer_list = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
-            answer_options = shuffle(answer_list)
-            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
+#     if request.method == "POST":
+#         if request.form['button'] == 'continue':
+#             question, rightAnswer, wrongAnswers = getQuestion()
+#             answer_list = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+#             answer_options = shuffle(answer_list)
+#             return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3])
 
-        if request.form['button'] == 'settings':
-            return render_template("lobbyWin.html")
+#         if request.form['button'] == 'settings':
+#             return render_template("lobbyWin.html")
 
-    else:
-        return render_template("cardExplanation.html")
+#     else:
+#         return render_template("cardExplanation.html")
 
 @app.route("/lobbyWin", methods=["GET", "POST"])
 def lobbyWin():
