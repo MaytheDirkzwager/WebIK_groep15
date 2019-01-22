@@ -5,7 +5,14 @@
 
     <head>
         <title>Settings</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -14,8 +21,20 @@
         </div>
 
         <div class="text">
-            <h5>Thema: </h5>
-            <h5>Aantal Punten: 10</h5>
+            <h5>Category: </h5>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Points Required to Win
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <h6 class="dropdown-header">Choose an Amount</h6>
+                <a class="dropdown-item" href="#">5</a><br>
+                <a class="dropdown-item" href="#">10</a><br>
+                <a class="dropdown-item" href="#">15</a><br>
+                <a class="dropdown-item" href="#">20</a><br>
+                <a class="dropdown-item" href="#">25</a>
+              </div>
+            </div>
         </div>
 
         <form action = "{{ url_for('gamesettings') }}" method = "post">
