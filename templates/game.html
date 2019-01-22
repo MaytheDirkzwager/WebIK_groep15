@@ -17,23 +17,18 @@
 
         <div class="text">
             <div class="answer">
-            <input type="submit" value="{{ answerA }}" class="button"></input>
+            <input type="submit" name="button" value="{{ answerA }}" class="button"></input>
             </div>
             <div class="answer">
-            <input type="submit" value="{{ answerB }}" class="button"></input>
+            <input type="submit" name="button" value="{{ answerB }}" class="button"></input>
             </div>
             <div class="answer">
-            <input type="submit" value="{{ answerC }}" class="button"></input>
+            <input type="submit" name="button" value="{{ answerC }}" class="button"></input>
             </div>
             <div class="answer">
-            <input type="submit" value="{{ answerD }}" class="button"></input>
+            <input type="submit" name="button" value="{{ answerD }}" class="button"></input>
             </div>
-        </div>
-
-
-
-        <div class="buttonMiddle">
-            <button type="submit" name="button" value="confirm" class="button">Confirm</button>
+            <input type="hidden" id="rightAnswer" name="rightAnswer" value="{{ rightAnswer }}" />
         </div>
 
          <div>
