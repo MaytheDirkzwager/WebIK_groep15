@@ -19,6 +19,57 @@
 
         <title>Start game</title>
 
+        <script type='text/javascript'>
+            function addFields(){
+                // Number of inputs to create
+                var number = document.getElementById("number").value;
+
+                // Container <div> where dynamic content will be placed
+                var container = document.getElementById("container");
+
+                if(isNaN(number)){
+                    document.getElementById("container").innerHTML = "Must enter a number";
+
+                }
+                else{
+                    // Clear previous contents of the container
+                    while (container.hasChildNodes()) {
+                        container.removeChild(container.lastChild);
+
+                    }
+                    for (var i=0;i<number;i++){
+                        // Append a node with a random text
+                        container.appendChild(document.createTextNode("Player " + (i+1) + " "));
+                        // Create an <input> element, set its type and name attributes
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = "nickname" + (i + 1);
+                        input.id = "nickname";
+                        input.placeholder = "Nickname";
+                        input.required = "required";
+                        input.autocomplete = "off";
+                        container.appendChild(input);
+                        // Append a line break
+                        container.appendChild(document.createElement("br"));
+                        container.appendChild(document.createElement("br"));
+                    }
+
+                    var button = document.createElement("button");
+                    button.id = "start";
+                    button.name = "submit";
+                    button.setAttribute('class', 'btn btn-primary btn-block');
+                    button.innerHTML = "Start";
+                    container.appendChild(button);
+                }
+            }
+
+            $("#start").on("click", function() {
+                var list = document.getElementById("id").value;
+
+
+            });
+        </script>
+
     </head>
 
     <body>
@@ -28,43 +79,22 @@
         </div>
 
         <div class="login-form">
-
+            <form action="{{ url_for('index') }}" method="post">
+                <h2 class="text-center">New game</h2>
+                <div class="form-group">
+                    <input autocomplete="off" type="text" id="number" autofocus class="form-control" placeholder="Number of players" name="number" required="required">
+                </div>
+                <div class="form-group">
+                    <a href="#" id="filldetails" class="btn btn-primary btn-block" onclick="addFields()">Confirm</a>
+                </div>
                 <form action="{{ url_for('index') }}" method="post">
-
-                <h2 class="text-center">Start game</h2>
-                {% if value == 0 %}
-                <div class="form-group">
-                    <input autocomplete="off" type="text" autofocus class="form-control" placeholder="Nickname" name="nickname" required="required">
-                </div>
-                <div class="form-group">
-                    <button type="submit"  name="button" value="make" class="btn btn-primary btn-block">Make game</button>
-                </div>
-                <div class="form-group">
-                    <button type="submit" name="button" value="join" class="btn btn-primary btn-block">Join game</button>
-                </div>
-                {% endif %}
-                {% for item in number %}
-                    <div class="form-group">
-                        <input class="form-control" readonly type="text" value="{{ nickname }}", name="nickname">
-                    </div>
-                    <div class="form-group">
-                        <input autocomplete="off" type="text" autofocus class="form-control" name="password" placeholder="Password" required data-error="checking">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" name="button" value="join" class="btn btn-primary btn-block">Join game</button>
-                    </div>
-                    {% if error %}
-                        <p style="color: red;">
-                        Password does not exist
-                        </p>
-                    {% endif %}
-                {% endfor %}
-
+                    <div id="container"></div>
+                </form>
             </form>
         </div>
+
 
 
     </body>
 
 </html>
-
