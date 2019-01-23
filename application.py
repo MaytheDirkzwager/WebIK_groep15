@@ -6,11 +6,7 @@ from tempfile import mkdtemp
 import pprint as pp
 from helpers import *
 from random import shuffle
-# import aiohttp
-# import requests
-# from pytrivia import Category, Diffculty, Type, Trivia
 
-from helpers import *
 
 """
 Mocht je een vraag willen genereren, doe het als volgt:
@@ -45,7 +41,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///players.db")
+db = SQL("sqlite:///boombazled.db")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -56,39 +52,17 @@ def index():
 
     if request.method == "POST":
 
-        number = []
-        nickname = request.form.get("nickname")
+        password = gen_password()
 
-        if request.form['button'] == 'make':
-            password = gen_password()
-            db.execute("INSERT INTO hosts (nickname, password) VALUES (:nickname, :password)",
-                        nickname=nickname, password=password)
-            return render_template("lobbyHost.html")
+        for item in range(int(request.form.get("number"))):
+            nickname = request.form.get("nickname" + str(item + 1))
+            db.execute("INSERT INTO players (nickname, id) VALUES (:nickname, :id)",
+                        nickname=nickname, id=password)
 
-        if request.form['button'] == 'join' and request.form.get("password"):
-
-            result = db.execute("SELECT * FROM hosts WHERE password=:password",
-                                password=request.form.get("password"))
-
-            if not result:
-                return render_template("index.html", number=["one"], nickname=request.form.get("nickname"), error=True)
-
-            db.execute("INSERT INTO users (nickname, password) VALUES (:nickname, :password)",
-                        nickname=nickname, password=request.form.get("password"))
-
-            db.execute("UPDATE hosts SET players = players + :number WHERE password=:password",
-                        number = 1, password=request.form.get("password"))
-
-            return render_template("lobbyPlayer.html")
-
-        if request.form['button'] == 'join':
-            number.append('one')
-            value = 1
-            return render_template("index.html", number=number, nickname=nickname)
-
+        return redirect(url_for("lobbyHost"))
 
     else:
-        return render_template("index.html", value = 0)
+        return render_template('index.html')
 
 @app.route("/lobbyHost", methods=["GET", "POST"])
 def lobbyHost():
@@ -104,7 +78,7 @@ def lobbyHost():
             return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer)
 
         if request.form['button'] == 'settings':
-            return render_template("gamesettings.html")
+            return redirect(url_for("gamesettings"))
 
     else:
         return render_template("lobbyHost.html")
@@ -124,7 +98,7 @@ def gamesettings():
 
     if request.method == "POST":
         if request.form['button'] == 'back':
-            return render_template("lobbyHost.html")
+            return redirect(url_for("lobbyHost"))
 
     else:
         return render_template("gamesettings.html")
@@ -137,6 +111,9 @@ def game():
             print('correct!')
             return render_template("card.html")
 
+        elif request.form['button'] == 'settings':
+            return render_template("sessionsettings.html")
+
         else:
             print('incorrect!')
             question, rightAnswer, wrongAnswers = getQuestion()
@@ -144,8 +121,7 @@ def game():
             shuffle(answer_options)
             return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer)
 
-        if request.form['button'] == 'settings':
-            return render_template("sessionsettings.html")
+
 
     else:
 
