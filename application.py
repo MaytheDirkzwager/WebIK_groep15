@@ -53,109 +53,66 @@ def index():
     if request.method == "POST":
 
         password = gen_password()
+        players = []
 
         for item in range(int(request.form.get("number"))):
             nickname = request.form.get("nickname" + str(item + 1))
+            players.append(nickname)
             db.execute("INSERT INTO players (nickname, id) VALUES (:nickname, :id)",
                         nickname=nickname, id=password)
-
-        return redirect(url_for("lobbyHost"))
+        session["players"] = players
+        session["turn"] = 0
+        session["id"] = password
+        return redirect(url_for("game"))
 
     else:
         return render_template('index.html')
 
-@app.route("/lobbyHost", methods=["GET", "POST"])
-def lobbyHost():
-
-    if request.method == "POST":
-        if request.form['button'] == 'leave':
-            return render_template("index.html", value = 0)
-
-        if request.form['button'] == 'start':
-            question, rightAnswer, wrongAnswers = getQuestion()
-            answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
-            shuffle(answer_options)
-            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer)
-
-        if request.form['button'] == 'settings':
-            return redirect(url_for("gamesettings"))
-
-    else:
-        return render_template("lobbyHost.html")
-
-
-@app.route("/lobbyPlayer", methods=["GET", "POST"])
-def lobbyPlayer():
-
-    if request.method == "POST":
-        return render_template("index.html", value = 0)
-
-    else:
-        return render_template("lobbyPlayer.html")
-
-@app.route("/gamesettings", methods=["GET", "POST"])
-def gamesettings():
-
-    if request.method == "POST":
-        if request.form['button'] == 'back':
-            return redirect(url_for("lobbyHost"))
-
-    else:
-        return render_template("gamesettings.html")
-
 @app.route("/game", methods=["GET", "POST"])
 def game():
+
+    score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
+    score = score[0]['score']
+    print(score)
 
     if request.method == "POST":
         if request.form['button'] == request.form['rightAnswer']:
             print('correct!')
-            return render_template("card.html")
+            db.execute("UPDATE players SET score = score + :point WHERE nickname = :nickname",
+                    point = 1, nickname = session["players"][session["turn"]])
 
-        elif request.form['button'] == 'settings':
-            return render_template("sessionsettings.html")
+            return redirect(url_for("card"))
+
+        elif request.form['button'] == 'leave':
+            return redirect(url_for("index"))
 
         else:
+            session["turn"] += 1
+            session["turn"] = session["turn"] % len(session["players"])
+            score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
+            score = score[0]['score']
             print('incorrect!')
             question, rightAnswer, wrongAnswers = getQuestion()
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
-            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer)
-
-
-
+            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score = score)
     else:
 
-        return render_template("game.html")
-
-@app.route("/sessionsettings", methods=["GET", "POST"])
-def sessionsettings():
-
-    if request.method == "POST":
-        if request.form['button'] == 'back':
-            question, rightAnswer, wrongAnswers = getQuestion()
-            answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
-            shuffle(answer_options)
-            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer)
-
-        if request.form['button'] == 'leave':
-            return render_template("index.html", value=0)
-
-    else:
-        return render_template("sessionsettings.html")
+        question, rightAnswer, wrongAnswers = getQuestion()
+        answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+        shuffle(answer_options)
+        return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
 
 @app.route("/card", methods=["GET", "POST"])
 def card():
 
     if request.method == "POST":
         if request.form['button'] == 'activate':
-            question, rightAnswer, wrongAnswers = getQuestion()
-            answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
-            shuffle(answer_options)
-            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer)
+            return redirect(url_for("game"))
 
 
         if request.form['button'] == 'settings':
-            return render_template("sessionsettings.html")
+            return redirect(url_for("sessionsettings"))
 
     else:
         return render_template("card.html")
@@ -165,10 +122,10 @@ def lobbyWin():
 
     if request.method == "POST":
         if request.form['button'] == 'leave':
-            return render_template("index.html", value=0)
+            return redirect(url_for("index"))
 
         if request.form['button'] == 'restart':
-            return render_template("lobbyPlayer.html")
+            return redirect(url_for("lobbyPlayer"))
 
     else:
         return render_template("lobbyWin.html")
