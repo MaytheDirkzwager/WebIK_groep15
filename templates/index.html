@@ -29,7 +29,6 @@
 
                 if(isNaN(number)){
                     document.getElementById("container").innerHTML = "Must enter a number";
-
                 }
                 else{
                     // Clear previous contents of the container
@@ -37,19 +36,19 @@
                         container.removeChild(container.lastChild);
 
                     }
-                    for (var i=0;i<number;i++){
+                    for (var i = 0; i < number; i++){
                         // Append a node with a random text
                         container.appendChild(document.createTextNode("Player " + (i+1) + " "));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
                         input.name = "nickname" + (i + 1);
-                        input.id = "nickname";
+                        input.id = "nickname" + (i + 1);
                         input.placeholder = "Nickname";
                         input.required = "required";
                         input.autocomplete = "off";
                         container.appendChild(input);
-                        // Append a line break
+                        // Append a line break two times
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createElement("br"));
                     }
@@ -60,12 +59,33 @@
                     button.setAttribute('class', 'btn btn-primary btn-block');
                     button.innerHTML = "Start";
                     container.appendChild(button);
+
                 }
             }
 
-            $("#start").on("click", function() {
-                var list = document.getElementById("id").value;
-            });
+            function validateForm() {
+                var length = document.getElementById("number").value;
+                var dict = {};
+                for (var i = 0; i < length; i++){
+                    var name = document.getElementById("nickname" + (i + 1)).value;
+                    console.log(name)
+                    console.log(dict)
+                    if (name in dict) {
+                        alert("All nicknames must be unique");
+                        return false;
+                    }
+                    dict[name] = "one";
+
+                }
+                return true;
+            }
+
+
+
+            // $("#start").on("click", function() {
+            //     var list = document.getElementById("id").value;
+
+            // });
         </script>
 
     </head>
@@ -77,7 +97,7 @@
         </div>
 
         <div class="login-form">
-            <form action="{{ url_for('index') }}" method="post">
+            <form action="{{ url_for('index') }}" onsubmit="return validateForm()" method="post">
                 <h2 class="text-center">New game</h2>
                 <div class="form-group">
                     <input autocomplete="off" type="text" id="number" autofocus class="form-control" placeholder="Number of players" name="number" required="required">
@@ -85,7 +105,7 @@
                 <div class="form-group">
                     <a href="#" id="filldetails" class="btn btn-primary btn-block" onclick="addFields()">Confirm</a>
                 </div>
-                <form action="{{ url_for('index') }}" method="post">
+                <form action="{{ url_for('index') }}" onsubmit="return validateForm()" method="post">
                     <div id="container"></div>
                 </form>
             </form>
