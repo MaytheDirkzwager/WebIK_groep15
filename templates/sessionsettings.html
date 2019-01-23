@@ -5,7 +5,14 @@
 
     <head>
         <title>Settings</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet" />
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
+        <script>$("[name='my-checkbox']").bootstrapSwitch();</script>
 
     </head>
     <body>
@@ -14,17 +21,62 @@
         </div>
 
         <div class="text">
-            <h5>Volume: </h5>
+            <h5>Category: </h5>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="customSwitch1">
+          <label class="custom-control-label" for="customSwitch1">Turn on all Categories</label>
+        </div>
+        <br></br>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">Entertainment</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">History</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">Science & Technology</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">Geography</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">Nature</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">Politics</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1">
+          <label class="custom-control-label" for="customCheck1">Sports</label>
+        </div>
+        <br></br>
+        <h5>Goal: </h5>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Points Required to Win
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <h6 class="dropdown-header">Choose an Amount</h6>
+                <a class="dropdown-item" href="#">5</a><br>
+                <a class="dropdown-item" href="#">10</a><br>
+                <a class="dropdown-item" href="#">15</a><br>
+                <a class="dropdown-item" href="#">20</a><br>
+                <a class="dropdown-item" href="#">25</a>
+              </div>
+            </div>
         </div>
 
-        <form action = "{{ url_for('sessionsettings') }}" method = "post">
+
+        <form action = "{{ url_for('gamesettings') }}" method = "post">
 
          <div>
             <button class="backIcon" type="submit" name="button" value="back" ></button>
-        </div>
-
-        <div class="buttonMiddle">
-            <button type="submit" name="button" value="leave" class="button">Leave Game</button>
         </div>
 
         </form>
