@@ -68,6 +68,7 @@ def index():
     else:
         return render_template('index.html')
 
+
 @app.route("/game", methods=["GET", "POST"])
 def game():
 
@@ -96,6 +97,7 @@ def game():
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
             return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score = score)
+
     else:
 
         question, rightAnswer, wrongAnswers = getQuestion()

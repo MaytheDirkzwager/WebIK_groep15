@@ -29,7 +29,6 @@
 
                 if(isNaN(number)){
                     document.getElementById("container").innerHTML = "Must enter a number";
-
                 }
                 else{
                     // Clear previous contents of the container
@@ -37,19 +36,19 @@
                         container.removeChild(container.lastChild);
 
                     }
-                    for (var i=0;i<number;i++){
+                    for (var i = 0; i < number; i++){
                         // Append a node with a random text
                         container.appendChild(document.createTextNode("Player " + (i+1) + " "));
                         // Create an <input> element, set its type and name attributes
                         var input = document.createElement("input");
                         input.type = "text";
                         input.name = "nickname" + (i + 1);
-                        input.id = "nickname";
+                        input.id = "nickname" + (i + 1);
                         input.placeholder = "Nickname";
                         input.required = "required";
                         input.autocomplete = "off";
                         container.appendChild(input);
-                        // Append a line break
+                        // Append a line break two times
                         container.appendChild(document.createElement("br"));
                         container.appendChild(document.createElement("br"));
                     }
@@ -60,14 +59,33 @@
                     button.setAttribute('class', 'btn btn-primary btn-block');
                     button.innerHTML = "Start";
                     container.appendChild(button);
+
                 }
             }
 
-            $("#start").on("click", function() {
-                var list = document.getElementById("id").value;
+            function validateForm() {
+                var length = document.getElementById("number").value;
+                var dict = {};
+                for (var i = 0; i < length; i++){
+                    var name = document.getElementById("nickname" + (i + 1)).value;
+                    console.log(name)
+                    console.log(dict)
+                    if (name in dict) {
+                        alert("All nicknames must be unique");
+                        return false;
+                    }
+                    dict[name] = "one";
+
+                }
+                return true;
+            }
 
 
-            });
+
+            // $("#start").on("click", function() {
+            //     var list = document.getElementById("id").value;
+
+            // });
         </script>
 
     </head>
@@ -79,7 +97,7 @@
         </div>
 
         <div class="login-form">
-            <form action="{{ url_for('index') }}" method="post">
+            <form action="{{ url_for('index') }}" onsubmit="return validateForm()" method="post">
                 <h2 class="text-center">New game</h2>
                 <div class="form-group">
                     <input autocomplete="off" type="text" id="number" autofocus class="form-control" placeholder="Number of players" name="number" required="required">
@@ -87,15 +105,65 @@
                 <div class="form-group">
                     <a href="#" id="filldetails" class="btn btn-primary btn-block" onclick="addFields()">Confirm</a>
                 </div>
-                <form action="{{ url_for('index') }}" method="post">
+                <form action="{{ url_for('index') }}" onsubmit="return validateForm()" method="post">
                     <div id="container"></div>
                 </form>
             </form>
         </div>
 
-
-
-
+        <center><div class="henlo">
+            <h5>Category: </h5>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+              <label class="custom-control-label" for="customSwitch1">Turn on all Categories</label>
+            </div>
+            <br></br>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Entertainment</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">History</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Science & Technology</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Geography</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Nature</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Politics</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Sports</label>
+            </div>
+            <br></br>
+            <h5>Goal: </h5>
+                <center><div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Points Required to Win
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <center><h6 class="dropdown-header">Choose an Amount</h6>
+                    <a class="dropdown-item" href="#">5</a><br>
+                    <a class="dropdown-item" href="#">10</a><br>
+                    <a class="dropdown-item" href="#">15</a><br>
+                    <a class="dropdown-item" href="#">20</a><br>
+                    <a class="dropdown-item" href="#">25</a></center>
+                  </div>
+                </div></center>
+            </div>
+        </div></center>
     </body>
 
 </html>
+
