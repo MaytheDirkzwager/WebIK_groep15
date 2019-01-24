@@ -74,6 +74,8 @@ def game():
 
     score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
     score = score[0]['score']
+    players = db.execute("SELECT * FROM players WHERE id = :id", id = session["id"])
+    print(players)
     print(score)
 
     if request.method == "POST":
@@ -96,14 +98,15 @@ def game():
             question, rightAnswer, wrongAnswers = getQuestion()
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
-            return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score = score)
+            return render_template("game.html", players = players, question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score = score)
 
     else:
 
         question, rightAnswer, wrongAnswers = getQuestion()
         answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
         shuffle(answer_options)
-        return render_template("game.html", question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
+        return render_template("game.html", players = players, question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2],
+                                    answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
 
 @app.route("/card", methods=["GET", "POST"])
 def card():

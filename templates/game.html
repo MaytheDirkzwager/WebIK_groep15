@@ -42,5 +42,19 @@
             <button class="button" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
         </div>
 
+        <div class="table table-striped">
+            <table>
+                {% for player in players %}
+                <tr>
+                    <th>{{ players.nickname }}</th>
+                </tr>
+                <tr>
+                    <td>{{ players.score }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
         </form>
     </body>

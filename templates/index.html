@@ -30,6 +30,9 @@
                 if(isNaN(number)){
                     document.getElementById("container").innerHTML = "Must enter a number";
                 }
+                else if(number <= 0){
+                    document.getElementById("container").innerHTML = "Must enter a positive number"
+                }
                 else{
                     // Clear previous contents of the container
                     while (container.hasChildNodes()) {
@@ -59,7 +62,6 @@
                     button.setAttribute('class', 'btn btn-primary btn-block');
                     button.innerHTML = "Start";
                     container.appendChild(button);
-
                 }
             }
 
