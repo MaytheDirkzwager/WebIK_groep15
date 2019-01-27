@@ -7,6 +7,26 @@
         <title>Card</title>
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
 
+        <script>
+            function validInput() {
+                var x, text, number;
+
+                // create random number between 1 and 10
+                number = Math.floor(Math.random() * (10 - 1 + 1) ) + 1;
+
+                // Get the value of the input field with id="numb"
+                x = document.getElementById("numb").value;
+
+                // If x is Not a Number or less than one or greater than 10
+                if (x == number) {
+                    document.getElementById("demo").innerHTML = '<form action = "{{ url_for("card") }}" method = "post"><div class="buttonCard"><button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button></div></form>';
+                } else {
+                    document.getElementById("demo").innerHTML = number;
+                }
+
+
+            }
+        </script>
     </head>
 
     <body>
@@ -16,14 +36,53 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">{{ data.title }} Card</h1>
+                    <h1 class="card-title">{{ data.title }}</h1>
                     <p class="card-text">{{ data.description }}</p>
 
-                    <form action = "{{ url_for('card') }}" method = "post">
-                        <div class="buttonCard">
-                            <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
-                        </div>
-                    </form>
+
+                    {% if 'speed' in data.name %}
+                        <form action = "{{ url_for('card') }}" method = "post">
+                            <div class="buttonCard">
+                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
+                            </div>
+                        </form>
+                    {% endif %}
+
+                    {% if 'chance' in data.name %}
+                        <input id="numb">
+                            <button type="button" onclick="validInput()">Check</button>
+                            <p id="demo"></p>
+                        <!--<form action = "{{ url_for('card') }}" method = "post">-->
+                        <!--    <div class="buttonCard">-->
+                        <!--        <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>-->
+                        <!--    </div>-->
+                        <!--</form>-->
+                    {% endif %}
+
+                    {% if 'googol' in data.name %}
+                        <form action = "{{ url_for('card') }}" method = "post">
+                            <div class="buttonCard">
+                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
+                            </div>
+                        </form>
+                    {% endif %}
+
+                    {% if 'monkey' in data.name %}
+                        <form action = "{{ url_for('card') }}" method = "post">
+                            <div class="buttonCard">
+                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
+                            </div>
+                        </form>
+                    {% endif %}
+
+                    {% if 'banana' in data.name %}
+                        <form action = "{{ url_for('card') }}" method = "post">
+                            <div class="buttonCard">
+                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
+                            </div>
+                        </form>
+                    {% endif %}
+
                 </div>
             </div>
     </body>
