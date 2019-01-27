@@ -5,8 +5,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import pprint as pp
 from helpers import *
-from random import shuffle
-
+import random
 
 """
 Mocht je een vraag willen genereren, doe het als volgt:
@@ -17,7 +16,6 @@ Raadpleeg bron voor juiste spelling en/of andere informatie:
 https://github.com/MaT1g3R/Python-Trivia-API
 """
 
-from helpers import *
 
 # configure application
 app = Flask(__name__)
@@ -30,9 +28,6 @@ if app.config["DEBUG"]:
         response.headers["Expires"] = 0
         response.headers["Pragma"] = "no-cache"
         return response
-
-# # custom filter
-# app.jinja_env.filters["usd"] = usd
 
 # configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
@@ -84,7 +79,16 @@ def game():
             db.execute("UPDATE players SET score = score + :point WHERE nickname = :nickname",
                     point = 1, nickname = session["players"][session["turn"]])
 
-            return redirect(url_for("card"))
+            data_list = [{'name':'speed', 'title':'Supersonic speedround', 'description': '???'},
+                    {'name':'chance', 'title':'Ladder of chance to the golden mud hut', 'description':'Choose a number between 1 and 10'},
+                    {'name':'googol', 'title':'Googol card', 'description':'Get two points'},
+                    {'name':'monkey', 'title':'Hungry monkey', 'description':'You get all the points from the winning player'},
+                    {'name':'banana', 'title':'Banana turn', 'description':'Next player will be skipped'}]
+
+            data = data_list[randint(0,4)]
+            print(data)
+
+            return render_template("card.html", data=data)
 
         elif request.form['button'] == 'leave':
             return redirect(url_for("index"))
@@ -112,12 +116,22 @@ def game():
 def card():
 
     if request.method == "POST":
-        if request.form['button'] == 'activate':
+        if request.form['button'] == 'speed':
             return redirect(url_for("game"))
 
+        if request.form['button'] == 'chance':
+            return redirect(url_for("game"))
 
-        if request.form['button'] == 'settings':
-            return redirect(url_for("sessionsettings"))
+        if request.form['button'] == 'googol':
+            db.execute("UPDATE players SET score = score + 2 WHERE id=:id AND nickname=:nickname", id=session["id"], nickname=nickname)
+            return redirect(url_for("game"))
+
+        if request.form['button'] == 'banana':
+            return redirect(url_for("game"))
+
+        if request.form['button'] == 'speed':
+            return redirect(url_for("game"))
+
 
     else:
         return render_template("card.html")
