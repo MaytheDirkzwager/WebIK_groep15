@@ -85,8 +85,10 @@ def game():
                     {'name':'banana', 'title':'Banana turn', 'description':'Next player will be skipped'}]
 
             data = data_list[randint(0,3)]
+            session["secret_number"] = randint(1,10)
+            print(session["secret_number"])
 
-            return render_template("card.html", data=data)
+            return render_template("card.html", data=data_list[0])
 
         elif request.form['button'] == 'leave':
             return redirect(url_for("index"))
@@ -101,7 +103,7 @@ def game():
             session["theAnswer"] = rightAnswer
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
-            return render_template("game.html", answerOptions = answer_options, players = players, question = question,
+            return render_template("game.html", alert='sorry', answerOptions = answer_options, players = players, question = question,
                                     rightAnswer=rightAnswer, player=session["players"][session["turn"]], score = score)
 
     else:
@@ -110,7 +112,7 @@ def game():
         session["theAnswer"] = rightAnswer
         answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
         shuffle(answer_options)
-        return render_template("game.html", answerOptions = answer_options, players = players, question = question,
+        return render_template("game.html", alert='new player', answerOptions = answer_options, players = players, question = question,
                                 rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
 
 @app.route("/card", methods=["GET", "POST"])
@@ -119,7 +121,11 @@ def card():
     if request.method == "POST":
 
         if request.form['button'] == 'chance':
-            # TO DO
+            secret_number = str(session["secret_number"])
+            answer_number = request.form.get("input_number")
+            print(answer_number, secret_number)
+            if secret_number == answer_number:
+                return render_template("lobbyWin.html")
 
             # next players turn
             session["turn"] += 1
@@ -127,6 +133,7 @@ def card():
             return redirect(url_for("game"))
 
         if request.form['button'] == 'googol':
+            # give player 2 extra points
             db.execute("UPDATE players SET score = score + 2 WHERE id=:id AND nickname=:nickname", id=session["id"], nickname=session["players"][session["turn"]])
 
             # next players turn
@@ -136,16 +143,18 @@ def card():
             return redirect(url_for("game"))
 
         if request.form['button'] == 'monkey':
+            # get score and nickname from players with the most points
             players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
             players_list.sort(key = operator.itemgetter(0), reverse = True)
             nickname_best = players_list[0][1]
             score_best = players_list[0][0]
 
+            # get points from player with most points and give it to current player
             db.execute("UPDATE players SET score = 0 WHERE id = :id AND nickname = :nickname", id=session["id"], nickname=nickname_best)
             db.execute("UPDATE players SET score = score + :score WHERE id = :id AND nickname = :nickname",
                         score = score_best,id=session["id"], nickname=session["players"][session["turn"]])
 
-             # next players turn
+            # next players turn
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
 

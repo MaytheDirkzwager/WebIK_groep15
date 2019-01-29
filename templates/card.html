@@ -31,7 +31,7 @@
 
     <body>
             <div class="title">
-                <h1>This is the {{ data.title }} !</h1>
+                <h1>This is the {{ data.title }}!</h1>
             </div>
 
             <div class="card">
@@ -40,14 +40,10 @@
                     <p class="card-text">{{ data.description }}</p>
 
                     {% if 'chance' in data.name %}
-                        <input id="numb">
-                            <button type="button" onclick="validInput()">Check</button>
-                            <p id="demo"></p>
-                        <!--<form action = "{{ url_for('card') }}" method = "post">-->
-                        <!--    <div class="buttonCard">-->
-                        <!--        <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>-->
-                        <!--    </div>-->
-                        <!--</form>-->
+                        <form action = "{{ url_for('card') }}" method = "post">
+                            <input id="numb" autofocus autocomplete="off" name="input_number">
+                            <button type="submit" name="button" value="{{ data.name }}" class="button">Check</button>
+                        </form>
                     {% endif %}
 
                     {% if 'googol' in data.name %}
