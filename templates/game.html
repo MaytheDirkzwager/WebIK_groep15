@@ -7,6 +7,21 @@
         <title>Game</title>
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
 
+
+            <!--// $("#question_check").click(function(){-->
+            <!--//     var choice = document.getElementById("choice").value;-->
+            <!--//     $.ajax({-->
+            <!--//         type: 'POST',-->
+            <!--//         url: "/question_check",-->
+            <!--//         data: {answer_given: choice},-->
+            <!--//         dataType: "text",-->
+            <!--//         success: function(data){-->
+            <!--//         alert("Right answer!");-->
+            <!--//         }-->
+            <!--//     });-->
+            <!--// });-->
+
+
     </head>
     <body>
         <div class="title">
@@ -22,41 +37,19 @@
 
         <form action = "{{ url_for('game') }}" method = "post">
 
-        <div class="text">
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerA }}" class="button"></input>
-            </div>
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerB }}" class="button"></input>
-            </div>
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerC }}" class="button"></input>
-            </div>
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerD }}" class="button"></input>
-            </div>
-            <input type="text" id="rightAnswer" name="rightAnswer" value="{{ rightAnswer }}" />
-        </div>
-
-
-
-         <div class="buttonMiddle">
-            <button class="button" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
-        </div>
-
-        <div class="table table-striped">
-            <table>
-                {% for player in players %}
-                <tr>
-                    <th>{{ players.nickname }}</th>
-                </tr>
-                <tr>
-                    <td>{{ players.score }}</td>
-                </tr>
+            <div class="text">
+                {% for answerOption in answerOptions %}
+                    <div class="answer">
+                        <input type="submit" name="button" value="{{ answerOption }}" class="button"></input>
+                    </div>
                 {% endfor %}
 
-            </table>
-        </div>
+                <input type="text" id="rightAnswer" name="rightAnswer" value="{{ rightAnswer }}"/>
+            </div class>
+
+             <div class="buttonMiddle">
+                <button class="button" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
+            </div>
 
         </form>
     </body>

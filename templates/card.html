@@ -19,9 +19,9 @@
 
                 // If x is Not a Number or less than one or greater than 10
                 if (x == number) {
-                    document.getElementById("demo").innerHTML = '<form action = "{{ url_for("card") }}" method = "post"><div class="buttonCard"><button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button></div></form>';
+                    document.getElementById("demo").innerHTML = '<form action = "{{ url_for("card") }}" method = "post"><div class="buttonCard"><button autofocus autocomplete="off" type="submit" name="button" value="{{ data.name }}" class="button">Activate</button></div></form>';
                 } else {
-                    document.getElementById("demo").innerHTML = number;
+                    document.getElementById("demo").innerHTML = '<form action = "{{ url_for("card") }}" method = "post"><div class="buttonCard"><button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button></div></form>';
                 }
 
 

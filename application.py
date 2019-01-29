@@ -55,6 +55,7 @@ def index():
             players.append(nickname)
             db.execute("INSERT INTO players (nickname, id) VALUES (:nickname, :id)",
                         nickname=nickname, id=password)
+
         session["players"] = players
         session["turn"] = 0
         session["id"] = password
@@ -70,12 +71,9 @@ def game():
     score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
     score = score[0]['score']
     players = db.execute("SELECT * FROM players WHERE id = :id", id = session["id"])
-    print(players)
-    print(score)
 
     if request.method == "POST":
         if request.form['button'] == request.form['rightAnswer']:
-            print('correct!')
             db.execute("UPDATE players SET score = score + :point WHERE nickname = :nickname",
                     point = 1, nickname = session["players"][session["turn"]])
 
@@ -86,7 +84,6 @@ def game():
                     {'name':'banana', 'title':'Banana turn', 'description':'Next player will be skipped'}]
 
             data = data_list[randint(0,4)]
-            print(data)
 
             return render_template("card.html", data=data)
 
@@ -98,19 +95,20 @@ def game():
             session["turn"] = session["turn"] % len(session["players"])
             score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
             score = score[0]['score']
-            print('incorrect!')
             question, rightAnswer, wrongAnswers = getQuestion()
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
-            return render_template("game.html", players = players, question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score = score)
+            return render_template("game.html", answerOptions = answer_options, players = players, question = question,
+                                    rightAnswer=rightAnswer, player=session["players"][session["turn"]], score = score)
 
     else:
 
         question, rightAnswer, wrongAnswers = getQuestion()
+        # session["theAnswer"] = rightAnswer
         answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
         shuffle(answer_options)
-        return render_template("game.html", players = players, question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2],
-                                    answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
+        return render_template("game.html", answerOptions = answer_options, players = players, question = question,
+                                rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
 
 @app.route("/card", methods=["GET", "POST"])
 def card():
@@ -138,7 +136,6 @@ def card():
 
 @app.route("/lobbyWin", methods=["GET", "POST"])
 def lobbyWin():
-
     if request.method == "POST":
         if request.form['button'] == 'leave':
             return redirect(url_for("index"))
@@ -148,4 +145,18 @@ def lobbyWin():
 
     else:
         return render_template("lobbyWin.html")
+
+# @app.route("/question_check", methods=["GET", "POST"])
+# def question_check():
+#     answer_given = request.args.get("answer_given")
+#     correct_answer = session["theAnswer"]
+
+#     if answer_given == correct_answer:
+#         return jsonify(status="success")
+#     else:
+#         return jsonify(status="fail")
+
+
+
+
 
