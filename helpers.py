@@ -3,11 +3,16 @@ import string
 import requests
 from pytrivia import Category, Diffculty, Type, Trivia
 from random import *
+import random
 
-def getQuestion():
+def getQuestion(categories):
 
     my_api = Trivia(True)
-    response = my_api.request(1, None, None, Type.Multiple_Choice)
+    if len(categories) != 0:
+        category = random.choice(categories)
+    else:
+        category = None
+    response = my_api.request(1, category, None, Type.Multiple_Choice)
 
     question = response['results'][0]['question']
     rightAnswer = response['results'][0]['correct_answer']

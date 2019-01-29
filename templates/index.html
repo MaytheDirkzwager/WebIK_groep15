@@ -81,18 +81,26 @@
                 return true;
             }
 
-
+            function checkAll() {
+                for(var i=1;i<8;i++) {
+                    var tmp_checkbox_id = "customCheck"+i;
+                    if(document.getElementById("customSwitch1").checked == true) {
+                        document.getElementById(tmp_checkbox_id).checked = true;
+                    }
+                    else {
+                        document.getElementById(tmp_checkbox_id).checked = false;
+                    }
+                }
+            }
 
             // $("#start").on("click", function() {
             //     var list = document.getElementById("id").value;
 
             // });
         </script>
-
     </head>
 
     <body>
-
         <div class="title">
             <h1>Welcome to Boombazled!</h1>
         </div>
@@ -106,60 +114,62 @@
                 <div class="form-group">
                     <a href="#" id="filldetails" class="btn btn-primary btn-block" onclick="addFields()">Confirm</a>
                 </div>
+
                 <form action="{{ url_for('index') }}" onsubmit="return validateForm()" method="post">
                     <div id="container"></div>
-                </form>
+
+                <div class="henlo">
+                    <h5>Category: </h5>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="checkAll()">
+                      <label class="custom-control-label" for="customSwitch1">Turn on all Categories</label>
+                    </div>
+                    <br></br>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" name="entertainment" value="entertainment">
+                      <label class="custom-control-label" for="customCheck1">Entertainment</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" name="history" value="history">
+                      <label class="custom-control-label" for="customCheck2">History</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck3" name="science" value="science">
+                      <label class="custom-control-label" for="customCheck3">Science & Technology</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck4" name="geography" value="geography">
+                      <label class="custom-control-label" for="customCheck4">Geography</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox"3 class="custom-control-input" id="customCheck5" name="nature" value="nature">
+                      <label class="custom-control-label" for="customCheck5">Nature</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck6" name="politics" value="politics">
+                      <label class="custom-control-label" for="customCheck6">Politics</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck7" name="sports" value="sports">
+                      <label class="custom-control-label" for="customCheck7">Sports</label>
+                    </div>
+                    <br></br>
+                    <h5>Goal: </h5>
+                        <select class="custom-select" style="width:auto;" name="rounds">
+                          <option selected>Rounds to Win</option>
+                          <option value="5">5</option>
+                          <option value="10">10</option>
+                          <option value="15">15</option>
+                          <option value="20">20</option>
+                          <option value="25">25</option>
+                          <option value="30">30</option>
+                        </select>
+                    </div>
+
+
             </form>
         </div>
 
-        <center><div class="henlo">
-            <h5>Category: </h5>
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customSwitch1">
-              <label class="custom-control-label" for="customSwitch1">Turn on all Categories</label>
-            </div>
-            <br></br>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck1">
-              <label class="custom-control-label" for="customCheck1">Entertainment</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck2">
-              <label class="custom-control-label" for="customCheck2">History</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck3">
-              <label class="custom-control-label" for="customCheck3">Science & Technology</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck4">
-              <label class="custom-control-label" for="customCheck4">Geography</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck5">
-              <label class="custom-control-label" for="customCheck5">Nature</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck6">
-              <label class="custom-control-label" for="customCheck6">Politics</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="customCheck7">
-              <label class="custom-control-label" for="customCheck7">Sports</label>
-            </div>
-            <br></br>
-            <h5>Goal: </h5>
-                <select class="custom-select" style="width:auto;">
-                  <option selected>Points to Win</option>
-                  <option value="1">5</option>
-                  <option value="2">10</option>
-                  <option value="3">15</option>
-                  <option value="4">20</option>
-                  <option value="5">25</option>
-                  <option value="6">30</option>
-                </select>
-            </div>
-        </div></center>
     </body>
 
 </html>
