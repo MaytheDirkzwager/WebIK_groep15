@@ -48,15 +48,20 @@ def index():
 
     if request.method == "POST":
 
+        # generate a game id
         password = gen_password()
+
+        # make a list for all the players
         players = []
 
+        # append all nicknames to the list players
         for item in range(int(request.form.get("number"))):
             nickname = request.form.get("nickname" + str(item + 1))
             players.append(nickname)
             db.execute("INSERT INTO players (nickname, id) VALUES (:nickname, :id)",
                         nickname=nickname, id=password)
 
+        # remember the players and the game id
         session["players"] = players
         session["turn"] = 0
         session["id"] = password
@@ -79,16 +84,12 @@ def game():
             db.execute("UPDATE players SET score = score + :point WHERE nickname = :nickname",
                     point = 1, nickname = session["players"][session["turn"]])
 
-            data_list = [{'name':'chance', 'title':'Ladder of chance to the golden mud hut', 'description':'Choose a number between 1 and 10'},
-                    {'name':'googol', 'title':'Googol card', 'description':'You get two points'},
-                    {'name':'monkey', 'title':'Hungry monkey', 'description':'You get all the points from the winning player'},
-                    {'name':'banana', 'title':'Banana turn', 'description':'Next player will be skipped'}]
-
-            data = data_list[randint(0,3)]
             session["secret_number"] = randint(1,10)
             print(session["secret_number"])
 
-            return render_template("card.html", data=data_list[0])
+            card = get_card()
+
+            return render_template("card.html", card=card)
 
         elif request.form['button'] == 'leave':
             return redirect(url_for("index"))
@@ -121,6 +122,7 @@ def card():
     if request.method == "POST":
 
         if request.form['button'] == 'chance':
+            # check if the input from user is the same as the random generated number
             secret_number = str(session["secret_number"])
             answer_number = request.form.get("input_number")
             print(answer_number, secret_number)
@@ -177,7 +179,7 @@ def lobbyWin():
             return redirect(url_for("index"))
 
         if request.form['button'] == 'restart':
-            return redirect(url_for("lobbyPlayer"))
+            return redirect(url_for("index"))
 
     else:
         return render_template("lobbyWin.html")

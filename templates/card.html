@@ -7,65 +7,45 @@
         <title>Card</title>
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
 
-        <script>
-            function validInput() {
-                var x, text, number;
-
-                // create random number between 1 and 10
-                number = Math.floor(Math.random() * (10 - 1 + 1) ) + 1;
-
-                // Get the value of the input field with id="numb"
-                x = document.getElementById("numb").value;
-
-                // If x is Not a Number or less than one or greater than 10
-                if (x == number) {
-                    document.getElementById("demo").innerHTML = '<form action = "{{ url_for("card") }}" method = "post"><div class="buttonCard"><button autofocus autocomplete="off" type="submit" name="button" value="{{ data.name }}" class="button">Activate</button></div></form>';
-                } else {
-                    document.getElementById("demo").innerHTML = '<form action = "{{ url_for("card") }}" method = "post"><div class="buttonCard"><button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button></div></form>';
-                }
-
-
-            }
-        </script>
     </head>
 
     <body>
             <div class="title">
-                <h1>This is the {{ data.title }}!</h1>
+                <h1>This is the {{ card.title }}!</h1>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">{{ data.title }}</h1>
-                    <p class="card-text">{{ data.description }}</p>
+                    <h1 class="card-title">{{ card.title }}</h1>
+                    <p class="card-text">{{ card.description }}</p>
 
-                    {% if 'chance' in data.name %}
+                    {% if 'chance' in card.name %}
                         <form action = "{{ url_for('card') }}" method = "post">
                             <input id="numb" autofocus autocomplete="off" name="input_number">
-                            <button type="submit" name="button" value="{{ data.name }}" class="button">Check</button>
+                            <button type="submit" name="button" value="{{ card.name }}" class="button">Check</button>
                         </form>
                     {% endif %}
 
-                    {% if 'googol' in data.name %}
+                    {% if 'googol' in card.name %}
                         <form action = "{{ url_for('card') }}" method = "post">
                             <div class="buttonCard">
-                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
+                                <button type="submit" name="button" value="{{ card.name }}" class="button">Activate</button>
                             </div>
                         </form>
                     {% endif %}
 
-                    {% if 'monkey' in data.name %}
+                    {% if 'monkey' in card.name %}
                         <form action = "{{ url_for('card') }}" method = "post">
                             <div class="buttonCard">
-                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
+                                <button type="submit" name="button" value="{{ card.name }}" class="button">Activate</button>
                             </div>
                         </form>
                     {% endif %}
 
-                    {% if 'banana' in data.name %}
+                    {% if 'banana' in card.name %}
                         <form action = "{{ url_for('card') }}" method = "post">
                             <div class="buttonCard">
-                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
+                                <button type="submit" name="button" value="{{ card.name }}" class="button">Activate</button>
                             </div>
                         </form>
                     {% endif %}
