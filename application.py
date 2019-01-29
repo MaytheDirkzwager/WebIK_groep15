@@ -173,15 +173,7 @@ def lobbyWin():
     else:
         return render_template("lobbyWin.html")
 
-# @app.route("/question_check", methods=["GET", "POST"])
-# def question_check():
-#     answer_given = request.args.get("answer_given")
-#     correct_answer = session["theAnswer"]
 
-#     if answer_given == correct_answer:
-#         return jsonify(status="success")
-#     else:
-#         return jsonify(status="fail")
 
 
 
