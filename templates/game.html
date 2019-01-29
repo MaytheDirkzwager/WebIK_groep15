@@ -5,17 +5,28 @@
 
     <head>
         <title>Game</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
-
     </head>
+
     <body>
+
+        {% if 'sorry' in alert %}
+            <div class="alert alert-danger" role="alert">
+                Incorrect! Now it is {{ player }}'s turn.
+            </div>
+        {% endif %}
+
+        {% if 'new player' in alert %}
+            <div class="alert alert-success" role="alert">
+                It's {{ player }}'s turn!
+            </div>
+        {% endif %}
+
         <div class="title">
             <h1>{{ question }}</h1>
         </div>
 
-        <div class="player">
-            <h4>{{ player }}'s turn!</h4>
-        </div>
         <div class="score">
             <h4>score: {{ score }}</h4>
         </div>
@@ -25,25 +36,19 @@
 
         <form action = "{{ url_for('game') }}" method = "post">
 
-        <div class="text">
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerA }}" class="button"></input>
-            </div>
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerB }}" class="button"></input>
-            </div>
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerC }}" class="button"></input>
-            </div>
-            <div class="answer">
-            <input type="submit" name="button" value="{{ answerD }}" class="button"></input>
-            </div>
-            <input type="hidden" id="rightAnswer" name="rightAnswer" value="{{ rightAnswer }}" />
-        </div>
+            <div class="text">
+                {% for answerOption in answerOptions %}
+                    <div class="answer">
+                        <input type="submit" name="button" value="{{ answerOption }}" class="button"></input>
+                    </div>
+                {% endfor %}
 
-         <div class="buttonMiddle">
-            <button class="button" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
-        </div>
+                <input type="text" id="rightAnswer" name="rightAnswer" value="{{ rightAnswer }}"/>
+            </div class>
+
+             <div class="buttonMiddle">
+                <button class="button" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
+            </div>
 
         </form>
     </body>
