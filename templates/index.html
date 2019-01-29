@@ -34,6 +34,9 @@
                 else if(number <= 0){
                     document.getElementById("container").innerHTML = "Must enter a positive number"
                 }
+                else if(number > 100){
+                    document.getElementById("container").innerHTML = "The maximal "
+                }
                 else{
                     // Clear previous contents of the container
                     while (container.hasChildNodes()) {

@@ -6,6 +6,7 @@ from tempfile import mkdtemp
 import pprint as pp
 from helpers import *
 import random
+import operator
 
 """
 Mocht je een vraag willen genereren, doe het als volgt:
@@ -59,6 +60,7 @@ def index():
         session["players"] = players
         session["turn"] = 0
         session["id"] = password
+        session["round"] = 0
         return redirect(url_for("game"))
 
     else:
@@ -73,17 +75,16 @@ def game():
     players = db.execute("SELECT * FROM players WHERE id = :id", id = session["id"])
 
     if request.method == "POST":
-        if request.form['button'] == request.form['rightAnswer']:
+        if request.form['button'] == session["theAnswer"]:
             db.execute("UPDATE players SET score = score + :point WHERE nickname = :nickname",
                     point = 1, nickname = session["players"][session["turn"]])
 
-            data_list = [{'name':'speed', 'title':'Supersonic speedround', 'description': '???'},
-                    {'name':'chance', 'title':'Ladder of chance to the golden mud hut', 'description':'Choose a number between 1 and 10'},
+            data_list = [{'name':'chance', 'title':'Ladder of chance to the golden mud hut', 'description':'Choose a number between 1 and 10'},
                     {'name':'googol', 'title':'Googol card', 'description':'You get two points'},
                     {'name':'monkey', 'title':'Hungry monkey', 'description':'You get all the points from the winning player'},
                     {'name':'banana', 'title':'Banana turn', 'description':'Next player will be skipped'}]
 
-            data = data_list[randint(0,4)]
+            data = data_list[randint(0,3)]
 
             return render_template("card.html", data=data)
 
@@ -93,9 +94,11 @@ def game():
         else:
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
+            print(session["turn"])
             score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
             score = score[0]['score']
             question, rightAnswer, wrongAnswers = getQuestion()
+            session["theAnswer"] = rightAnswer
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
             return render_template("game.html", answerOptions = answer_options, players = players, question = question,
@@ -104,7 +107,7 @@ def game():
     else:
 
         question, rightAnswer, wrongAnswers = getQuestion()
-        # session["theAnswer"] = rightAnswer
+        session["theAnswer"] = rightAnswer
         answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
         shuffle(answer_options)
         return render_template("game.html", answerOptions = answer_options, players = players, question = question,
@@ -114,22 +117,46 @@ def game():
 def card():
 
     if request.method == "POST":
-        if request.form['button'] == 'speed':
-            return redirect(url_for("game"))
 
         if request.form['button'] == 'chance':
+            # TO DO
+
+            # next players turn
+            session["turn"] += 1
+            session["turn"] = session["turn"] % len(session["players"])
             return redirect(url_for("game"))
 
         if request.form['button'] == 'googol':
             db.execute("UPDATE players SET score = score + 2 WHERE id=:id AND nickname=:nickname", id=session["id"], nickname=session["players"][session["turn"]])
+
+            # next players turn
+            session["turn"] += 1
+            session["turn"] = session["turn"] % len(session["players"])
+
             return redirect(url_for("game"))
 
         if request.form['button'] == 'monkey':
+            players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
+            players_list.sort(key = operator.itemgetter(0), reverse = True)
+            nickname_best = players_list[0][1]
+            score_best = players_list[0][0]
+
+            db.execute("UPDATE players SET score = 0 WHERE id = :id AND nickname = :nickname", id=session["id"], nickname=nickname_best)
+            db.execute("UPDATE players SET score = score + :score WHERE id = :id AND nickname = :nickname",
+                        score = score_best,id=session["id"], nickname=session["players"][session["turn"]])
+
+             # next players turn
+            session["turn"] += 1
+            session["turn"] = session["turn"] % len(session["players"])
+
             return redirect(url_for("game"))
 
         if request.form['button'] == 'banana':
-            return redirect(url_for("game"))
+            # next player will be skipped
+            session["turn"] += 2
+            session["turn"] = session["turn"] % len(session["players"])
 
+            return redirect(url_for("game"))
 
     else:
         return render_template("card.html")

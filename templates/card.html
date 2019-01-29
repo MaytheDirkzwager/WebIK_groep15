@@ -39,15 +39,6 @@
                     <h1 class="card-title">{{ data.title }}</h1>
                     <p class="card-text">{{ data.description }}</p>
 
-
-                    {% if 'speed' in data.name %}
-                        <form action = "{{ url_for('card') }}" method = "post">
-                            <div class="buttonCard">
-                                <button type="submit" name="button" value="{{ data.name }}" class="button">Activate</button>
-                            </div>
-                        </form>
-                    {% endif %}
-
                     {% if 'chance' in data.name %}
                         <input id="numb">
                             <button type="button" onclick="validInput()">Check</button>

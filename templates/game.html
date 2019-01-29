@@ -7,21 +7,6 @@
         <title>Game</title>
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
 
-
-            <!--// $("#question_check").click(function(){-->
-            <!--//     var choice = document.getElementById("choice").value;-->
-            <!--//     $.ajax({-->
-            <!--//         type: 'POST',-->
-            <!--//         url: "/question_check",-->
-            <!--//         data: {answer_given: choice},-->
-            <!--//         dataType: "text",-->
-            <!--//         success: function(data){-->
-            <!--//         alert("Right answer!");-->
-            <!--//         }-->
-            <!--//     });-->
-            <!--// });-->
-
-
     </head>
     <body>
         <div class="title">
@@ -44,7 +29,7 @@
                     </div>
                 {% endfor %}
 
-                <input type="text" id="rightAnswer" name="rightAnswer" value="{{ rightAnswer }}"/>
+                <!--<input type="text" id="rightAnswer" name="rightAnswer" value="{{ rightAnswer }}"/>-->
             </div class>
 
              <div class="buttonMiddle">
