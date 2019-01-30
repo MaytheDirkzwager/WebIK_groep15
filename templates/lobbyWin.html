@@ -9,6 +9,16 @@
 
     </head>
     <body>
+
+        <ul>
+            <li><a class="active" href="{{ url_for('index') }}">Boombazled</a></li>
+            {% for every_player in players %}
+                <li class="active">
+                    <a class="active">{{ every_player['nickname'] }}: {{ every_player['score'] }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
         <div class="title">
             <h1>{{ winner }} has emerged victorious!</h1>
         </div>
