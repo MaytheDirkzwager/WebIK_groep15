@@ -1,3 +1,4 @@
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 import aiohttp
 import string
 import requests
@@ -42,4 +43,33 @@ def get_card():
     # return one of the four card options
     return cards_list[randint(0,3)]
 
+def get_categories():
+    # make empty list for categories
+    categories = []
+
+    # for each category, if checked then add to list of categories
+    if request.form.get("entertainment"):
+        categories.extend([Category.Books, Category.Film, Category.Music, Category.Musicals_Theatres, Category.Tv, Category.Video_Games,
+                            Category.Board_Games, Category.Celebrities, Category.Comics, Category.Anime_Manga, Category.Cartoon, Category.Art])
+
+    if request.form.get("history"):
+        categories.extend([Category.Mythology, Category.History])
+
+    if request.form.get("science"):
+        categories.extend([Category.Gadgets, Category.Computers, Category.Maths, Category.Vehicles])
+
+    if request.form.get("nature"):
+        categories.extend([Category.Animals, Category.Nature])
+
+    if request.form.get("geography"):
+        categories.extend([Category.Geography])
+
+    if request.form.get("politics"):
+        categories.extend([Category.Politics])
+
+    if request.form.get("sports"):
+        categories.extend([Category.Sports])
+
+    # return complete list of checked categories
+    return categories
 
