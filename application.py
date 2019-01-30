@@ -181,6 +181,15 @@ def card():
             # next players turn
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
+
+            # if everyone got a turn, add round number
+            if session["turn"] == 0:
+                session["round"] += 1
+                print(session["round"])
+
+            if session["round"] == int(session["rounds"]) + 1:
+                return render_template("lobbyWin.html")
+
             return redirect(url_for("game"))
 
         if request.form['button'] == 'googol':
@@ -190,6 +199,14 @@ def card():
             # next players turn
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
+
+            # if everyone got a turn, add round number
+            if session["turn"] == 0:
+                session["round"] += 1
+                print(session["round"])
+
+            if session["round"] == int(session["rounds"]) + 1:
+                return render_template("lobbyWin.html")
 
             return redirect(url_for("game"))
 
@@ -209,12 +226,28 @@ def card():
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
 
+            # if everyone got a turn, add round number
+            if session["turn"] == 0:
+                session["round"] += 1
+                print(session["round"])
+
+            if session["round"] == int(session["rounds"]) + 1:
+                return render_template("lobbyWin.html")
+
             return redirect(url_for("game"))
 
         if request.form['button'] == 'banana':
             # next player will be skipped
             session["turn"] += 2
             session["turn"] = session["turn"] % len(session["players"])
+
+            # if everyone got a turn, add round number
+            if session["turn"] == 0 or session["turn"] == 1:
+                session["round"] += 1
+                print(session["round"])
+
+            if session["round"] == int(session["rounds"]) + 1:
+                return render_template("lobbyWin.html")
 
             return redirect(url_for("game"))
 
