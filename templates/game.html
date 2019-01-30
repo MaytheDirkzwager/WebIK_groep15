@@ -13,11 +13,17 @@
 
         <ul>
             <li><a class="active" href="{{ url_for('index') }}">Boombazled</a></li>
+            <li><a class="active">round: {{ round }}</a></li>
+            {% for every_player in players %}
+                <li class="active">
+                    <a class="active">{{ every_player['nickname'] }}: {{ every_player['score'] }}</a>
+                </li>
+            {% endfor %}
         </ul>
 
         {% if 'sorry' in alert %}
             <div class="alert alert-danger" role="alert">
-                Incorrect! The corrrect answer was: {{ rightAnswer }} Now it is {{ player }}'s turn.
+                Incorrect! Now it is {{ player }}'s turn.
             </div>
         {% endif %}
 
@@ -27,15 +33,15 @@
             </div>
         {% endif %}
 
-        <div class="round">
-            <h4>round: {{ round }}</h4>
-        </div>
+        <!--<div class="round">-->
+        <!--    <h4>round: {{ round }}</h4>-->
+        <!--</div>-->
 
-        {% for every_player in players %}
-        <div class="score">
-            <h4>{{ every_player['nickname'] }}: {{ every_player['score'] }}</h4>
-        </div>
-        {% endfor %}
+        <!--{% for every_player in players %}-->
+        <!--<div class="score">-->
+        <!--    <h4>{{ every_player['nickname'] }}: {{ every_player['score'] }}</h4>-->
+        <!--</div>-->
+        <!--{% endfor %}-->
 
         <form action = "{{ url_for('game') }}" method = "post">
 
@@ -52,10 +58,6 @@
                 {% endfor %}
 
             </div class>
-
-             <div class="buttonMiddle">
-                <button class="leaveButton" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
-            </div>
 
         </form>
     </body>
