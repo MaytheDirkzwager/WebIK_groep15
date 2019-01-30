@@ -13,7 +13,7 @@
 
         {% if 'sorry' in alert %}
             <div class="alert alert-danger" role="alert">
-                Incorrect! Now it is {{ player }}'s turn.
+                Incorrect! The corrrect answer was: {{ rightAnswer }} Now it is {{ player }}'s turn.
             </div>
         {% endif %}
 
@@ -23,29 +23,33 @@
             </div>
         {% endif %}
 
-        <div class="title">
-            <h1>{{ question }}</h1>
-        </div>
-
-        <div class="score">
-            <h4>score: {{ score }}</h4>
-        </div>
         <div class="round">
             <h4>round: {{ round }}</h4>
         </div>
 
+        {% for every_player in players %}
+        <div class="score">
+            <h4>{{ every_player['nickname'] }}: {{ every_player['score'] }}</h4>
+        </div>
+        {% endfor %}
+
         <form action = "{{ url_for('game') }}" method = "post">
 
             <div class="text">
+
+                <div class="question">
+                    <h1 class="divQuestion">{{ question }}</h1>
+                </div>
+
                 {% for answerOption in answerOptions %}
                     <div class="answer">
-                        <input type="submit" name="button" value="{{ answerOption }}" class="button"></input>
+                        <input type="submit" name="button" value="{{ answerOption }}" class="buttonAnswer"></input>
                     </div>
                 {% endfor %}
             </div class>
 
              <div class="buttonMiddle">
-                <button class="button" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
+                <button class="leaveButton" type="submit" name="button" value="leave" style="background-color: red;">Leave Game</button>
             </div>
 
         </form>
