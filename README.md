@@ -1,5 +1,6 @@
-# Projectvoorstel Groep 15
-*Gemaakt door Julian, Maythe & Soufian*
+# Boombazled
+## Projectvoorstel Groep 15
+*Gemaakt door Julian El-Fasih, Maythe Dirkzwager & Soufian el Ouaâzizi*
  1. Samenvatting
  2. Schets
  3. Features
