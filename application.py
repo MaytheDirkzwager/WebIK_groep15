@@ -220,7 +220,6 @@ def card():
             players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
             players_list.sort(key = operator.itemgetter(0), reverse = True)
 
-            # next players turn
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
 
