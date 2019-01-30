@@ -14,6 +14,7 @@ Het doel van de webapplicatie is om twee of meer spelers gelijktijdig vragen te 
 
 ![](https://doc-0c-ao-docs.googleusercontent.com/docs/securesc/acmvpc5jdiq72vvgs8pim8j32eb9u1e2/ace4cab4eo5b3mqoq7huc0fa4g9ufsfv/1548878400000/17407077742044336455/17407077742044336455/1AXzqFm-0rj-DLkGd5XhbCEZ1akA8A-wV?e=view)
 
+![screenshot](/docs/screenshot.png)
 
 ## 3. Features
 1. **Gebruikers kunnen een spel aanmaken en hier minimaal twee spelers aan toevoegen en een maximaal aantal ronden instellen**
