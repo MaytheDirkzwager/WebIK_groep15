@@ -9,36 +9,25 @@
 De volgende functies willen wij gaan implementeren in application.py:
 + def index (POST request)
     - Nickname invullen
-    - Spel maken (dit maakt de gebruiker een host, waarmee anderen kunnen verbinden)
-    - Spel joinen (door geheime code in te vullen die een host heeft gekregen)
+    - Spel maken
+    - Spelers toevoegen
+    - Categorieën kiezen
+    - Aantal rondes kiezen
     - HTML pagina's
         * index.html
-        * index_invalid_id.html (als er niet is ingevuld in het nickname veld, run pagina met extra informatie)
-+ def lobby (POST request)
-    - Wachtruimte tot alle spelers aanwezig zijn
-    - Spel beginnen (alleen voor host)
-    - Instellingen (alleen voor host)
-        * Thema kiezen
-    - Spel verlaten
-    - Na afloop spel wordt definitie gebruiker met andere opties:
-        * Resultatenoverzicht
-        * Optie om opnieuw een spel te spelen
-    - HTML pagina's
-        * lobby_host.html
-        * lobby_player.html
-        * newlobby.html (inclusief winstscherm)
-        * gamesettings.html
 + def game (POST request)
     - Triviavraag
     - Antwoord opties (4 opties, A/B/C/D)
     - Scorebord
-    - Instellingen
-        * Voor host: sessie stoppen
-        * Voor spelers: spel verlaten
-    - Kaart (bij goed antwoord)
+    - Spel verlaten
     - HTML pagina's
         * game.html
-        * sessionsettings.html
++ def card (POST request)
+    - Kaart (na een goed antwoord)
+    - Beschrijving van de kaart
+    - Toepassen effect kaart op score
+    - Terug naar game-pagina
+        * card.html
 
 ## 2. Views
 **![](https://lh6.googleusercontent.com/RjUfnCriIrnfD28RRzgKcneKv7BnyZwl2mJDPhPDGcHZQ8y17v8JCHKG6ulj9Z-QxbILJSItqH5Tu1xMouoEfrKNG46LjFNEUyLtn0uRnKykehM2DLHpgNU0HPo7eM1G9ynFfhrK)**
@@ -48,10 +37,14 @@ De hele presentatie met de losse schermen is te vinden via deze [link](https://p
 
 ## 3. Models/helpers
 De volgende functies willen wij gaan implementeren in helpers.py:
-+ def apology()
-    - Geef de html pagina waar je eerder op was, maar met een balk bovenin die zegt dat het niet gelukt is
-+ def get_questin(amount = 1, type = multiple, category, difficulty)
-    - Geeft een random vraag terug uit de volgende API: [Open Trivia Database](https://opentdb.com)
++ def getQuestion(categories)
+    - Input categorieën levert vraag, antwoord en verkeerde opties
++ def get_password()
+    - Genereert wachtwoord van vier tekens, letters en cijfers
++ def get_card()
+    - Kiest een willekeurige kaart en geeft deze terug
++ def get_categories()
+    - returnt alle geselecteerde categorieën uit het index-scherm in een lijst
 
 ## 4. Plugins/frameworks
 + **Open Trivia Database**: Database vol met vragen met de mogelijkheid tot multiplechoice, onderverdeeld in zowel moeilijkheidsgraad als thema.
