@@ -5,6 +5,7 @@
  2. Schets
  3. Features
  4. Repository
+ 5. Taakverdeling
 
 ## 1. Samenvatting
 Het doel van de webapplicatie is om twee of meer spelers gelijktijdig vragen te laten beantwoorden en hiermee punten te scoren. Als een bepaalde hoeveelheid punten is behaald, kunnen er kaarten met speciale bonussen worden ingezet. Als een vooraf ingesteld puntenaantal wordt behaald, dan heeft deze speler het spel gewonnen. Het spel is gebaseerd op een niet volledig uitgewerkte versie van een spel dat wordt geïntroduceerd in aflevering 20 van seizoen 8 van Friends.
@@ -41,5 +42,6 @@ Dikgedrukte punten behoren tot de *minimum viable product*.
  - **static/**: map met CSS bestand.
  - **templates/**: map met de vier html pagina's (card, game, index en lobbyWin).
  
- ## 5. 
+ ## 5. Taakverdeling
+ In dit project hebben alle groepsgenoten ongeveer evenveel bijgedragen aan het eindproduct. Iedereen heeft bijgedragen aan application.py en aan de html pagina's. Soufian is vooral bezig geweest met de trivia API, Julian heeft zich gefocust op de vragen en de opmaak hiervan en Maythe is bezig geweest met het implementeren van de kaarten. Gezamenlijk is er een eindproduct geleverd dat voldoet aan de hierboven genoemde eisen. 
 
