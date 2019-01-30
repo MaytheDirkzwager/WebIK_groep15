@@ -10,12 +10,12 @@
     </head>
     <body>
         <div class="title">
-            <h1>Julian heeft gewonnen!</h1>
+            <h1>{{ winner }} has emerged victorious!</h1>
         </div>
 
         <div class="text">
-            <h5>Met 10 punten!!!</h5>
-            <h5>Wat een ongelooflijke baas...!</h5>
+            <h5>With {{ winnerPoints }} points!!!</h5>
+            <h5>What an absolute champ...!</h5>
         </div>
 
         <form action = "{{ url_for('lobbyWin') }}" method = "post">
