@@ -147,7 +147,7 @@ main
 {
     position: absolute;
     margin: auto;
-    top: -45%;
+    top: -30%;
     right: 0;
     bottom: 0;
     left: 0;
@@ -225,7 +225,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #337ab7;
 }
 
 li {
@@ -233,22 +233,22 @@ li {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 7px 8px;
   text-decoration: none;
 
 }
 
 li a {
   display: block;
-  color: white;
+  color: #EDF5E1;
   text-align: center;
-  padding: 14px 16px;
+  padding: 7px 8px;
   text-decoration: none;
 }
 
-li a:hover {
-  background-color: #111;
-}
+/*li a:hover {*/
+/*  background-color: #111;*/
+/*}*/
 
 
 
