@@ -48,12 +48,7 @@ def index():
 
     if request.method == "POST":
 
-<<<<<<< HEAD
-        print("___ POST ____")
-
-=======
         # generate a game id
->>>>>>> b0571caa97a76b3723f674fced73ff2b718b4079
         password = gen_password()
 
         # make a list for all the players
@@ -71,7 +66,6 @@ def index():
         session["turn"] = 0
         session["round"] = 1
         session["id"] = password
-<<<<<<< HEAD
         # max ROUNDS as opposed to current ROUND
         session["rounds"] = request.form.get("rounds")
         print(session["rounds"])
@@ -111,8 +105,6 @@ def index():
 
         session["categories"] = categories
 
-
-        session["round"] = 0
         return redirect(url_for("game"))
 
     else:
@@ -145,49 +137,33 @@ def game():
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
 
-
             # if everyone got a turn, add round number
             if session["turn"] == 0:
                 session["round"] += 1
                 print(session["round"])
 
-            # IF MAXIMUM AMOUNT OF ROUNDS IS SURPASSED, RENDER WIN SCREEN
-            # if round == session["rounds"] + 1:
-                # TODO
-            score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
-            score = score[0]['score']
-            print('incorrect!')
-            # roep hier de functie aan met de gekozen categories
-            question, rightAnswer, wrongAnswers = getQuestion(session["categories"])
-            answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
-            shuffle(answer_options)
-            return render_template("game.html", round = session["round"], question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score = score)
-
-    else:
-
-        question, rightAnswer, wrongAnswers = getQuestion(session["categories"])
-        answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
-        shuffle(answer_options)
-        return render_template("game.html", round = session["round"], question = question, answerA = answer_options[0], answerB = answer_options[1], answerC = answer_options[2], answerD = answer_options[3], rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
+            if session["round"] == int(session["rounds"]) + 1:
+                return render_template("lobbyWin.html")
 
             print(session["turn"])
             score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
             score = score[0]['score']
-            question, rightAnswer, wrongAnswers = getQuestion()
+            question, rightAnswer, wrongAnswers = getQuestion(session["categories"])
             session["theAnswer"] = rightAnswer
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             shuffle(answer_options)
-            return render_template("game.html", alert='sorry', answerOptions = answer_options, players = players, question = question,
+            return render_template("game.html", round = session["round"], alert='sorry', answerOptions = answer_options, players = players, question = question,
                                     rightAnswer=rightAnswer, player=session["players"][session["turn"]], score = score)
 
     else:
 
-        question, rightAnswer, wrongAnswers = getQuestion()
+        question, rightAnswer, wrongAnswers = getQuestion(session["categories"])
         session["theAnswer"] = rightAnswer
         answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
         shuffle(answer_options)
-        return render_template("game.html", alert='new player', answerOptions = answer_options, players = players, question = question,
+        return render_template("game.html", round = session["round"], alert='new player', answerOptions = answer_options, players = players, question = question,
                                 rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
+
 
 @app.route("/card", methods=["GET", "POST"])
 def card():
