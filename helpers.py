@@ -41,10 +41,10 @@ def gen_password():
 
 def get_card():
     # list of all the card options
-    cards_list = [{'name': 'chance', 'title': 'Ladder of chance to the golden mud hut', 'description': 'Choose a number between 1 and 10'},
-                  {'name': 'googol', 'title': 'Googol card', 'description': 'You get two points'},
-                  {'name': 'monkey', 'title': 'Hungry monkey', 'description': 'You get all the points from the winning player'},
-                  {'name': 'banana', 'title': 'Banana turn', 'description': 'Next player will be skipped'}]
+    cards_list = [{'name': 'chance', 'title': 'Ladder of Chance to the Golden Mud Hut', 'description': 'Choose a number between 1 and 10. Guess right and you will win instantaneously!'},
+                  {'name': 'googol', 'title': 'Googol Card', 'description': 'You get two points!'},
+                  {'name': 'monkey', 'title': 'Hungry Monkey', 'description': 'You get all the points of the player who is in the lead!'},
+                  {'name': 'banana', 'title': 'Banana Turn', 'description': 'The next player will be skipped!'}]
 
     # return one of the four card options
     return cards_list[randint(0, 3)]
