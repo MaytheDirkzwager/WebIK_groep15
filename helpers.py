@@ -6,19 +6,25 @@ from pytrivia import Category, Diffculty, Type, Trivia
 from random import *
 import random
 
+
 def getQuestion(categories):
 
+    # Store API in variable
     my_api = Trivia(True)
+
+    # If there is no input categories, choose random category; else, use given category/categories
     if len(categories) != 0:
         category = random.choice(categories)
     else:
         category = None
     response = my_api.request(1, category, None, Type.Multiple_Choice)
 
+    # Store question, answer and wrong options into variables
     question = response['results'][0]['question']
     rightAnswer = response['results'][0]['correct_answer']
     wrongAnswers = response['results'][0]['incorrect_answers']
 
+    # Return all answer options and the question
     return question, rightAnswer, wrongAnswers
 
 
@@ -35,13 +41,14 @@ def gen_password():
 
 def get_card():
     # list of all the card options
-    cards_list = [{'name':'chance', 'title':'Ladder of chance to the golden mud hut', 'description':'Choose a number between 1 and 10'},
-                    {'name':'googol', 'title':'Googol card', 'description':'You get two points'},
-                    {'name':'monkey', 'title':'Hungry monkey', 'description':'You get all the points from the winning player'},
-                    {'name':'banana', 'title':'Banana turn', 'description':'Next player will be skipped'}]
+    cards_list = [{'name': 'chance', 'title': 'Ladder of chance to the golden mud hut', 'description': 'Choose a number between 1 and 10'},
+                  {'name': 'googol', 'title': 'Googol card', 'description': 'You get two points'},
+                  {'name': 'monkey', 'title': 'Hungry monkey', 'description': 'You get all the points from the winning player'},
+                  {'name': 'banana', 'title': 'Banana turn', 'description': 'Next player will be skipped'}]
 
     # return one of the four card options
-    return cards_list[randint(0,3)]
+    return cards_list[randint(0, 3)]
+
 
 def get_categories():
     # make empty list for categories
@@ -50,7 +57,7 @@ def get_categories():
     # for each category, if checked then add to list of categories
     if request.form.get("entertainment"):
         categories.extend([Category.Books, Category.Film, Category.Music, Category.Musicals_Theatres, Category.Tv, Category.Video_Games,
-                            Category.Board_Games, Category.Celebrities, Category.Comics, Category.Anime_Manga, Category.Cartoon, Category.Art])
+                           Category.Board_Games, Category.Celebrities, Category.Comics, Category.Anime_Manga, Category.Cartoon, Category.Art])
 
     if request.form.get("history"):
         categories.extend([Category.Mythology, Category.History])
@@ -72,4 +79,3 @@ def get_categories():
 
     # return complete list of checked categories
     return categories
-
