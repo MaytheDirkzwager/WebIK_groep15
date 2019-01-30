@@ -259,8 +259,6 @@ def lobbyWin():
         if request.form['button'] == 'leave':
             return redirect(url_for("index"))
 
-        if request.form['button'] == 'restart':
-            return redirect(url_for("index"))
 
     else:
 
