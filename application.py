@@ -167,7 +167,7 @@ def card():
                 score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
                 score = score[0]['score']
 
-                return render_template("lobbyWin.html", winner= session["players"][session["turn"]], winnerPoints = score)
+                return render_template("lobbyWin.html", winner = session["players"][session["turn"]], winnerPoints = score)
 
             # next players turn
             session["turn"] += 1
