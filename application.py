@@ -160,11 +160,14 @@ def card():
             # check if the input from user is the same as the random generated number
             secret_number = str(session["secret_number"])
             answer_number = request.form.get("input_number")
-            players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
-            players_list.sort(key = operator.itemgetter(0), reverse = True)
             print(answer_number, secret_number)
+
             if secret_number == answer_number:
-                return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
+                # get score from current player
+                score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
+                score = score[0]['score']
+
+                return render_template("lobbyWin.html", winner= session["players"][session["turn"]], winnerPoints = score)
 
             # next players turn
             session["turn"] += 1

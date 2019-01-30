@@ -41,7 +41,8 @@ def get_card():
                     {'name':'banana', 'title':'Banana turn', 'description':'Next player will be skipped'}]
 
     # return one of the four card options
-    return cards_list[randint(0,3)]
+    # return cards_list[randint(0,3)]
+    return cards_list[0]
 
 def get_categories():
     # make empty list for categories
