@@ -11,6 +11,7 @@
 ## 1. Samenvatting
 Het doel van de webapplicatie is om twee of meer spelers gelijktijdig vragen te laten beantwoorden en hiermee punten te scoren. Als een bepaalde hoeveelheid punten is behaald, kunnen er kaarten met speciale bonussen worden ingezet. Als een vooraf ingesteld puntenaantal wordt behaald, dan heeft deze speler het spel gewonnen. Het spel is gebaseerd op een niet volledig uitgewerkte versie van een spel dat wordt geïntroduceerd in aflevering 20 van seizoen 8 van Friends.
 ## 2. Screenshot
+Op onderstaande afbeelding is een scherm uit het spel Boombazled te zien. 
 ![screenshot](/docs/screenshot.png)
 
 ## 3. Features
@@ -26,8 +27,8 @@ Het doel van de webapplicatie is om twee of meer spelers gelijktijdig vragen te 
     - het aantal gespeelde ronden zien
 4. Gebruikers krijgen na iedere goed beantwoorde vraag één van de vier kaarten:
     - Ladder of Chance to the Golden Mud Hut: Kies een getal tussen 1 en 10, bij goed antwoord heeft de speler meteen gewonnen.
-    - Googl Card: Je krijgt twee gratis punten.
-    - Hungry Monkey: Je krijgt alle punten van de speler met de meeste punten.
+    - Googl Card: Speler krijgt twee extra punten.
+    - Hungry Monkey: Speler krijgt alle punten van de speler met de meeste punten.
     - Banana turn: De eerstvolgende speler moet een beurt overslaan.
     
 5. **Gebruikers kunnen zien wanneer ze gewonnen hebben**
