@@ -58,42 +58,6 @@ main
     margin-right: auto;
 }
 
-.settingsIcon
-{
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    left: 80%;
-    bottom: 0;
-    width:50px;
-    height:50px;
-    margin-left: auto;
-    margin-right: auto;
-    background: url(settings.png);
-    background-size: 100%;
-    background-color: #5CDB95;
-    outline: none;
-    border: none;
-}
-
-.backIcon
-{
-    position: absolute;
-    top: 10%;
-    right: 80%;
-    left: 10%;
-    bottom: 0;
-    width:50px;
-    height:50px;
-    margin-left: auto;
-    margin-right: auto;
-    background: url(backicon.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    outline: none;
-    border: none;
-}
-
 .card
 {
     position: absolute;
@@ -143,6 +107,34 @@ main
     font-size: 16px;
 }
 
+.buttonAnswer
+{
+    width: 70%;
+    background-color: #337ab7;
+    border-color: transparent;
+    border-radius: 5px;
+    color: #EDF5E1;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    outline: none;
+    font-size: 16px;
+}
+
+.leaveButton
+{
+    width: auto;
+    background-color: red;
+    border-color: transparent;
+    border-radius: 5px;
+    color: #05386B;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    outline: none;
+    font-size: 16px;
+}
+
 .title
 {
     margin-left: auto;
@@ -155,7 +147,7 @@ main
 {
     position: absolute;
     margin: auto;
-    top: -15%;
+    top: -45%;
     right: 0;
     bottom: 0;
     left: 0;
@@ -170,6 +162,28 @@ main
     width: auto;
     height: auto;
     margin-bottom: 10px;
+}
+
+.question
+{
+    position: relative;
+    width: auto;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.divQuestion
+{
+    width: 70%;
+    background-color: #EDF5E1;
+    border-color: transparent;
+    border-radius: 5px;
+    color: #05386B;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    outline: none;
+    font-size: 16px;
 }
 
 .centered
@@ -205,6 +219,37 @@ main
 {
     margin: 0 0 15px;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
 
 
 
