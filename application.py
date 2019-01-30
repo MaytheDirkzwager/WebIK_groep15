@@ -166,8 +166,6 @@ def card():
                 # get score from current player
                 score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
                 score = score[0]['score']
-                players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
-                players_list.sort(key = operator.itemgetter(0), reverse = True)
 
                 return render_template("lobbyWin.html", winner = session["players"][session["turn"]], winnerPoints = score)
 
@@ -182,6 +180,8 @@ def card():
 
             # render win screen if maximum number of rounds is reached
             if session["round"] == int(session["rounds"]) + 1:
+                players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
+                players_list.sort(key = operator.itemgetter(0), reverse = True)
                 return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
 
             return redirect(url_for("game"))
