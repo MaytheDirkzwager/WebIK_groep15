@@ -14,17 +14,24 @@ Bovenstaande afbeelding geeft een impressie van de verschillende schermen die in
 De hele presentatie met de losse schermen is te vinden via deze [link](https://prezi.com/kegmqcrojm20/welcome-to-bamboozled/?utm_campaign=share&utm_medium=copy).
 
 ## 3. Features
-1. **Gebruikers kunnen een spel aanmaken en hier minimaal twee spelers aan toevoegen en een maximaal puntenaantal instellen**
+1. **Gebruikers kunnen een spel aanmaken en hier minimaal twee spelers aan toevoegen en een maximaal aantal ronden instellen**
 2. **Gebruikers kunnen om beurten vragen beantwoorden**
     - Er is bovenaan de pagina een vraag te zien
     - Onderaan kan er een antwoord worden gekozen
-3. **Gebruikers kunnen na iedere vraag:**
+    - Bij iedere vraag kan worden gekozen uit vier antwoordopties
+3. **Gebruikers na iedere vraag:**
     - **zien of de beantwoorde vraag juist of onjuist was**
     - **hun totaal behaalde punten zien**
     - de punten van alle spelers zien
-4. Gebruikers kunnen bij een bepaald puntenaantal kiezen voor speciale kaarten om nog meer punten te verdienen
+    - het aantal gespeelde ronden zien
+4. Gebruikers krijgen na iedere goed beantwoorde vraag één van de vier kaarten:
+    - Ladder of Chance to the Golden Mud Hut: Kies een getal tussen 1 en 10, bij goed antwoord heeft de speler meteen gewonnen.
+    - Googl Card: Je krijgt twee gratis punten.
+    - Hungry Monkey: Je krijgt alle punten van de speler met de meeste punten.
+    - Banana turn: De eerstvolgende speler moet een beurt overslaan.
+    
 5. **Gebruikers kunnen zien wanneer ze gewonnen hebben**
-6. Gebruikers kunnen zien wie de meeste spellen heeft gewonnen
+
 
 Dikgedrukte punten behoren tot de *minimum viable product*.
 ## 4. Afhankelijkheden
