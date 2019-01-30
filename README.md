@@ -4,7 +4,7 @@
  1. Samenvatting
  2. Schets
  3. Features
- 4. Afhankelijkheden
+ 4. Repository
 
 ## 1. Samenvatting
 Het doel van de webapplicatie is om twee of meer spelers gelijktijdig vragen te laten beantwoorden en hiermee punten te scoren. Als een bepaalde hoeveelheid punten is behaald, kunnen er kaarten met speciale bonussen worden ingezet. Als een vooraf ingesteld puntenaantal wordt behaald, dan heeft deze speler het spel gewonnen. Het spel is gebaseerd op een niet volledig uitgewerkte versie van een spel dat wordt geïntroduceerd in aflevering 20 van seizoen 8 van Friends.
@@ -32,10 +32,14 @@ De hele presentatie met de losse schermen is te vinden via deze [link](https://p
     
 5. **Gebruikers kunnen zien wanneer ze gewonnen hebben**
 
-
 Dikgedrukte punten behoren tot de *minimum viable product*.
-## 4. Afhankelijkheden
- - **Benodigdheden**: Voor de triviavragen gebruiken we een triviadatabase: [http://jservice.io](http://jservice.io/).  <br> De API die nuttig lijkt voor onze website is [Qriusity](https://www.programmableweb.com/api/qriusity), een API dat gespecialiseerd voor triviawebsites/-apps.<br>
- - **Externe componenten**: Voor de opmaak van de website zullen we gebruik moeten maken van Bootstrap en SVG (gemaakt om figuren te maken, handig voor optiebalken, wellicht).
- - **Concurrerende bestaande websites**: Ons spel zal elementen bevatten die geïnspireerd zijn door apps als Kahoot, Trivia Crack Piccolo, maar met andere doeleinden.
- - **Moeilijkste delen**: Een uitdaging die we waarschijnlijk tegemoet zullen komen is hoe we precies de unieke kaarten met speciale bonussen zullen moeten coderen. Die moeten we namelijk zelf bedenken, uitwerken en implementeren.
+
+## 4. Repository
+ - **application.py**: routes voor de index, de gamepagina, de kaarten en voor het winscherm.
+ - **helpers.py**: functies voor het genereren van een vraag met antwoorden, voor het genereren van een spelcode, voor het verkrijgen van één van de vier kaarten en voor het kiezen van de categorieën.
+ - **boombazled.db**: database met één tabel waarin van iedere speler de nickname, score en de spelcode wordt opgeslagen.
+ - **static/**: map met CSS bestand.
+ - **templates/**: map met de vier html pagina's (card, game, index en lobbyWin).
+ 
+ ## 5. 
+
