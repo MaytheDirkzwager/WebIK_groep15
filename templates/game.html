@@ -11,6 +11,10 @@
 
     <body>
 
+        <ul>
+            <li><a class="active" href="{{ url_for('index') }}">Boombazled</a></li>
+        </ul>
+
         {% if 'sorry' in alert %}
             <div class="alert alert-danger" role="alert">
                 Incorrect! The corrrect answer was: {{ rightAnswer }} Now it is {{ player }}'s turn.
@@ -46,6 +50,7 @@
                         <input type="submit" name="button" value="{{ answerOption }}" class="buttonAnswer"></input>
                     </div>
                 {% endfor %}
+
             </div class>
 
              <div class="buttonMiddle">
