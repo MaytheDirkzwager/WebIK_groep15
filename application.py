@@ -97,44 +97,53 @@ def game():
             db.execute("UPDATE players SET score = score + :point WHERE nickname = :nickname",
                     point = 1, nickname = session["players"][session["turn"]])
 
-            #
+            # generate a secret number for the chance card
             session["secret_number"] = randint(1,10)
             print(session["secret_number"])
 
+            # generate one of the four cards
             card = get_card()
 
             return render_template("card.html", card=card)
 
+        # leave the game if leave button is pressed
         elif request.form['button'] == 'leave':
             return redirect(url_for("index"))
 
         else:
+            # update turn
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
 
             # if everyone got a turn, add round number
             if session["turn"] == 0:
                 session["round"] += 1
-                print(session["round"])
 
+            # render win screen if maximum number of rounds is reached
             if session["round"] == int(session["rounds"]) + 1:
                 return render_template("lobbyWin.html")
 
-            print(session["turn"])
+            # get score from current player
             score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
             score = score[0]['score']
+
+            # generate question and possible answers
             question, rightAnswer, wrongAnswers = getQuestion(session["categories"])
+            # remember right answer
             session["theAnswer"] = rightAnswer
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+            # shuffle the answer options
             shuffle(answer_options)
             return render_template("game.html", round = session["round"], alert='sorry', answerOptions = answer_options, players = players, question = question,
                                     rightAnswer=rightAnswer, player=session["players"][session["turn"]], score = score)
 
     else:
-
+        # generate question and possible answers
         question, rightAnswer, wrongAnswers = getQuestion(session["categories"])
+        # remember right answer
         session["theAnswer"] = rightAnswer
         answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
+        # shuffle the answer options
         shuffle(answer_options)
         return render_template("game.html", round = session["round"], alert='new player', answerOptions = answer_options, players = players, question = question,
                                 rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
@@ -162,6 +171,7 @@ def card():
                 session["round"] += 1
                 print(session["round"])
 
+            # render win screen if maximum number of rounds is reached
             if session["round"] == int(session["rounds"]) + 1:
                 return render_template("lobbyWin.html")
 
