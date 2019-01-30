@@ -136,7 +136,7 @@ def game():
             answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
             # shuffle the answer options
             shuffle(answer_options)
-            return render_template("game.html", round = session["round"], alert='sorry', answerOptions = answer_options, players = players, question = question,
+            return render_template("game.html", round = session["round"], rounds = session["rounds"], alert='sorry', answerOptions = answer_options, players = players, question = question,
                                     rightAnswer=rightAnswer, player=session["players"][session["turn"]], score = score)
 
     else:
@@ -147,7 +147,7 @@ def game():
         answer_options = [rightAnswer, wrongAnswers[0], wrongAnswers[1], wrongAnswers[2]]
         # shuffle the answer options
         shuffle(answer_options)
-        return render_template("game.html", round = session["round"], alert='new player', answerOptions = answer_options, players = players, question = question,
+        return render_template("game.html", round = session["round"], rounds = session["rounds"], alert='new player', answerOptions = answer_options, players = players, question = question,
                                 rightAnswer = rightAnswer, player=session["players"][session["turn"]], score=score)
 
 
