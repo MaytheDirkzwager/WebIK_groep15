@@ -11,7 +11,7 @@
 Het doel van de webapplicatie is om twee of meer spelers gelijktijdig vragen te laten beantwoorden en hiermee punten te scoren. Als een bepaalde hoeveelheid punten is behaald, kunnen er kaarten met speciale bonussen worden ingezet. Als een vooraf ingesteld puntenaantal wordt behaald, dan heeft deze speler het spel gewonnen. Het spel is gebaseerd op een niet volledig uitgewerkte versie van een spel dat wordt geïntroduceerd in aflevering 20 van seizoen 8 van Friends.
 ## 2. Schets
 
-**![](https://doc-0c-ao-docs.googleusercontent.com/docs/securesc/acmvpc5jdiq72vvgs8pim8j32eb9u1e2/ace4cab4eo5b3mqoq7huc0fa4g9ufsfv/1548878400000/17407077742044336455/17407077742044336455/1AXzqFm-0rj-DLkGd5XhbCEZ1akA8A-wV?e=view)**
+**![](https://doc-0c-ao-docs.googleusercontent.com/docs/securesc/acmvpc5jdiq72vvgs8pim8j32eb9u1e2/ace4cab4eo5b3mqoq7huc0fa4g9ufsfv/1548878400000/17407077742044336455/17407077742044336455/1AXzqFm-0rj-DLkGd5XhbCEZ1akA8A-wV?e=view.png)**
 Bovenstaande afbeelding geeft een impressie van de verschillende schermen die in onze webapplicatie te vinden zijn.
 De hele presentatie met de losse schermen is te vinden via deze [link](https://prezi.com/kegmqcrojm20/welcome-to-bamboozled/?utm_campaign=share&utm_medium=copy).
 
