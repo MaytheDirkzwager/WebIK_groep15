@@ -66,44 +66,13 @@ def index():
         session["turn"] = 0
         session["round"] = 1
         session["id"] = password
+
         # max ROUNDS as opposed to current ROUND
         session["rounds"] = request.form.get("rounds")
         print(session["rounds"])
-        categories = []
 
-        # add each category that is checked, could be put into helpers
-        entertainment = request.form.get("entertainment")
-        if entertainment:
-            categories.extend([Category.Books, Category.Film, Category.Music, Category.Musicals_Theatres, Category.Tv,
-                                Category.Video_Games, Category.Board_Games, Category.Celebrities, Category.Comics, Category.Anime_Manga, Category.Cartoon, Category.Art])
-
-        history = request.form.get("history")
-        if history:
-            categories.extend([Category.Mythology, Category.History])
-
-        science = request.form.get("science")
-        if science:
-            categories.extend([Category.Gadgets, Category.Computers, Category.Maths, Category.Vehicles])
-
-        nature = request.form.get("nature")
-        if nature:
-            categories.extend([Category.Animals, Category.Nature])
-
-        geography = request.form.get("geography")
-        if geography:
-            categories.extend([Category.Geography])
-
-        politics = request.form.get("politics")
-        if politics:
-            categories.extend([Category.Politics])
-
-        sports = request.form.get("sports")
-        if sports:
-            categories.extend([Category.Sports])
-
-        print(categories)
-
-        session["categories"] = categories
+        # get all the checked categories
+        session["categories"] = get_categories()
 
         return redirect(url_for("game"))
 
@@ -114,15 +83,21 @@ def index():
 @app.route("/game", methods=["GET", "POST"])
 def game():
 
+    # get score from current player
     score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
     score = score[0]['score']
+
+    # get a list of all the players in the game
     players = db.execute("SELECT * FROM players WHERE id = :id", id = session["id"])
 
     if request.method == "POST":
+        # check if given answer if the right answer
         if request.form['button'] == session["theAnswer"]:
+            # update players score with one point
             db.execute("UPDATE players SET score = score + :point WHERE nickname = :nickname",
                     point = 1, nickname = session["players"][session["turn"]])
 
+            #
             session["secret_number"] = randint(1,10)
             print(session["secret_number"])
 
