@@ -14,7 +14,6 @@
 
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
 
-
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -117,7 +116,12 @@
 
     <body>
 
+        <ul>
+            <li><a class="active" href="{{ url_for('index') }}">Boombazled</a></li>
+        </ul>
+
         <div class="title">
+            <br>
             <h1>Welcome to Boombazled!</h1>
         </div>
 
