@@ -114,6 +114,8 @@ def game():
             # update turn
             session["turn"] += 1
             session["turn"] = session["turn"] % len(session["players"])
+            players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
+            players_list.sort(key = operator.itemgetter(0), reverse = True)
 
             # if everyone got a turn, add round number
             if session["turn"] == 0:
@@ -121,7 +123,7 @@ def game():
 
             # render win screen if maximum number of rounds is reached
             if session["round"] == int(session["rounds"]) + 1:
-                return render_template("lobbyWin.html")
+                return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
 
             # get score from current player
             score = db.execute("SELECT score FROM players WHERE nickname = :nickname AND id = :id" , nickname = session["players"][session["turn"]], id = session["id"])
@@ -158,9 +160,11 @@ def card():
             # check if the input from user is the same as the random generated number
             secret_number = str(session["secret_number"])
             answer_number = request.form.get("input_number")
+            players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
+            players_list.sort(key = operator.itemgetter(0), reverse = True)
             print(answer_number, secret_number)
             if secret_number == answer_number:
-                return render_template("lobbyWin.html")
+                return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
 
             # next players turn
             session["turn"] += 1
@@ -173,13 +177,15 @@ def card():
 
             # render win screen if maximum number of rounds is reached
             if session["round"] == int(session["rounds"]) + 1:
-                return render_template("lobbyWin.html")
+                return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
 
             return redirect(url_for("game"))
 
         if request.form['button'] == 'googol':
             # give player 2 extra points
             db.execute("UPDATE players SET score = score + 2 WHERE id=:id AND nickname=:nickname", id=session["id"], nickname=session["players"][session["turn"]])
+            players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
+            players_list.sort(key = operator.itemgetter(0), reverse = True)
 
             # next players turn
             session["turn"] += 1
@@ -191,7 +197,7 @@ def card():
                 print(session["round"])
 
             if session["round"] == int(session["rounds"]) + 1:
-                return render_template("lobbyWin.html")
+                return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
 
             return redirect(url_for("game"))
 
@@ -206,6 +212,8 @@ def card():
             db.execute("UPDATE players SET score = 0 WHERE id = :id AND nickname = :nickname", id=session["id"], nickname=nickname_best)
             db.execute("UPDATE players SET score = score + :score WHERE id = :id AND nickname = :nickname",
                         score = score_best,id=session["id"], nickname=session["players"][session["turn"]])
+            players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
+            players_list.sort(key = operator.itemgetter(0), reverse = True)
 
             # next players turn
             session["turn"] += 1
@@ -217,7 +225,7 @@ def card():
                 print(session["round"])
 
             if session["round"] == int(session["rounds"]) + 1:
-                return render_template("lobbyWin.html")
+                return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
 
             return redirect(url_for("game"))
 
@@ -225,6 +233,8 @@ def card():
             # next player will be skipped
             session["turn"] += 2
             session["turn"] = session["turn"] % len(session["players"])
+            players_list = [(int(item["score"]), item["nickname"]) for item in db.execute("SELECT score, nickname FROM players WHERE id = :id", id=session["id"])]
+            players_list.sort(key = operator.itemgetter(0), reverse = True)
 
             # if everyone got a turn, add round number
             if session["turn"] == 0 or session["turn"] == 1:
@@ -232,7 +242,7 @@ def card():
                 print(session["round"])
 
             if session["round"] == int(session["rounds"]) + 1:
-                return render_template("lobbyWin.html")
+                return render_template("lobbyWin.html", winner= players_list[0][1], winnerPoints = players_list[0][0])
 
             return redirect(url_for("game"))
 
@@ -249,6 +259,7 @@ def lobbyWin():
             return redirect(url_for("index"))
 
     else:
+
         return render_template("lobbyWin.html")
 
 
