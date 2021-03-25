@@ -89,7 +89,7 @@ python-dateutil==2.7.3
 python-magic==0.4.15
 Python-Trivia-API==4.0.2
 pytz==2018.3
-PyYAML==3.13
+PyYAML==5.4
 pyzmq==17.1.2
 qtconsole==4.4.1
 render50==3.0.2
